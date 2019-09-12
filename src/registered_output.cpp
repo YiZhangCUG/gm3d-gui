@@ -2,10 +2,10 @@
 
 int GM3D::RegisteredOuput(bool remove_empty_element){
 	int count;
-	//ç»Ÿè®¡è¾“å‡ºæ¨¡å‹å•å…ƒå—ä½“å’Œé¡¶ç‚¹ ä»¥åŠè¾“å‡ºçš„å—ä½“æ•°æ®åˆ—è¡¨
+	//Í³¼ÆÊä³öÄ£ĞÍµ¥Ôª¿éÌåºÍ¶¥µã ÒÔ¼°Êä³öµÄ¿éÌåÊı¾İÁĞ±í
 	if (remove_empty_element){
 		count = 0;
-		//éå†æ‰€æœ‰å—ä½“æ•°æ® æ³¨å†Œæœ‰å€¼çš„å—ä½“
+		//±éÀúËùÓĞ¿éÌåÊı¾İ ×¢²áÓĞÖµµÄ¿éÌå
 		for (int i = 0; i < model_num_; i++){
 			if (model_block_val_[i] != BDL_MAX){
 				out_ele_data_ids_.push_back(i);
@@ -15,38 +15,38 @@ int GM3D::RegisteredOuput(bool remove_empty_element){
 			}
 		}
 
-		//éå†æ‰€æœ‰æ³¨å†Œçš„å—ä½“ æ·»åŠ é¡¶ç‚¹
+		//±éÀúËùÓĞ×¢²áµÄ¿éÌå Ìí¼Ó¶¥µã
 		for (int i = 0; i < out_ele_ids_.size(); i++){
 			for (int j = 0; j < 8; j++){
 				out_vert_ids_.push_back(model_cube_[out_ele_ids_[i]].ids[j]);
 			}
 		}
 
-		//å»é™¤è¾“å‡ºé¡¶ç‚¹ä¸­çš„é‡å¤éƒ¨åˆ†
-		vector<int>::iterator pos; //æ•´å‹å‘é‡çš„è¿­ä»£å™¨
-		sort(out_vert_ids_.begin(),out_vert_ids_.end()); //å¯¹é¡¶ç‚¹åºåˆ—ç”±å°åˆ°å¤§æ’åº
-		pos = unique(out_vert_ids_.begin(),out_vert_ids_.end()); //è·å–é‡å¤åºåˆ—å¼€å§‹çš„ä½ç½®
-		out_vert_ids_.erase(pos,out_vert_ids_.end()); //åˆ é™¤é‡å¤ç‚¹
+		//È¥³ıÊä³ö¶¥µãÖĞµÄÖØ¸´²¿·Ö
+		vector<int>::iterator pos; //ÕûĞÍÏòÁ¿µÄµü´úÆ÷
+		sort(out_vert_ids_.begin(),out_vert_ids_.end()); //¶Ô¶¥µãĞòÁĞÓÉĞ¡µ½´óÅÅĞò
+		pos = unique(out_vert_ids_.begin(),out_vert_ids_.end()); //»ñÈ¡ÖØ¸´ĞòÁĞ¿ªÊ¼µÄÎ»ÖÃ
+		out_vert_ids_.erase(pos,out_vert_ids_.end()); //É¾³ıÖØ¸´µã
 
-		//å°†éœ€è¦è¾“å‡ºçš„æ¨¡å‹é¡¶ç‚¹åºå·ä¸å®ƒä»¬çš„æ’åºåšä¸€ä¸ªå¯¹åº” ä¿è¯åœ¨è¾“å‡ºæ–‡ä»¶ä¸­é¡¶ç‚¹ç´¢å¼•å·å§‹ç»ˆæ˜¯ä»0å¼€å§‹çš„è¿ç»­çš„åºåˆ—
+		//½«ĞèÒªÊä³öµÄÄ£ĞÍ¶¥µãĞòºÅÓëËüÃÇµÄÅÅĞò×öÒ»¸ö¶ÔÓ¦ ±£Ö¤ÔÚÊä³öÎÄ¼şÖĞ¶¥µãË÷ÒıºÅÊ¼ÖÕÊÇ´Ó0¿ªÊ¼µÄÁ¬ĞøµÄĞòÁĞ
 		for (int i = 0; i < out_vert_ids_.size(); i++){
 			vert_out_map_[out_vert_ids_[i]] = i;
 		}
 	}
 	else{
-		//è¾“å‡ºçš„æ¨¡å‹å—ä½“ä¸ºæ‰€æœ‰
+		//Êä³öµÄÄ£ĞÍ¿éÌåÎªËùÓĞ
 		out_ele_ids_.resize(model_num_);
 		for (int i = 0; i < model_num_; i++){
 			out_ele_ids_[i] = i;
 		}
 
-		//è¾“å‡ºçš„æ¨¡å‹é¡¶ç‚¹ä¸ºæ‰€æœ‰
+		//Êä³öµÄÄ£ĞÍ¶¥µãÎªËùÓĞ
 		out_vert_ids_.resize(vert_num_);
 		for (int i = 0; i < vert_num_; i++){
 			vert_out_map_[i] = out_vert_ids_[i] = i;
 		}
 
-		//æ³¨å†Œæ‰€æœ‰æœ‰å€¼çš„å—ä½“æ•°æ®
+		//×¢²áËùÓĞÓĞÖµµÄ¿éÌåÊı¾İ
 		count = 0;
 		for (int i = 0; i < model_num_; i++){
 			if (model_block_val_[i] != BDL_MAX){
@@ -56,6 +56,6 @@ int GM3D::RegisteredOuput(bool remove_empty_element){
 			}
 		}
 	}
-	//è¾“å‡ºæ‰€æœ‰æ¨¡å‹å•å…ƒå—ä½“å’Œé¡¶ç‚¹ åªç»Ÿè®¡è¾“å‡ºçš„å—ä½“æ•°æ®åˆ—è¡¨
+	//Êä³öËùÓĞÄ£ĞÍµ¥Ôª¿éÌåºÍ¶¥µã Ö»Í³¼ÆÊä³öµÄ¿éÌåÊı¾İÁĞ±í
 	return 0;
 }

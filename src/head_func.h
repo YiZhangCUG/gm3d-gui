@@ -8,7 +8,7 @@
 #include "iomanip"
 #include "stdio.h"
 #include "stdlib.h"
-#include "unistd.h"
+//#include "unistd.h"
 #include "vector"
 #include "map"
 #include "algorithm"
@@ -18,42 +18,42 @@
 
 using namespace std;
 
-//æ•°å­¦å¸¸é‡
-#define BDL_MAX 1e+30 ///< å®šä¹‰å˜é‡çš„æœ€å¤§å€¼
-#define BDL_MIN -1e+30 ///< å®šä¹‰å˜é‡çš„æœ€å°å€¼
-#define PRECISION 16 ///< å®šä¹‰å°æ•°ç‚¹åéœ€è¦ä½¿ç”¨çš„ä½æ•°
-#define ZERO 1e-16 ///< å®šä¹‰é›¶å€¼
+//ÊıÑ§³£Á¿
+#define BDL_MAX 1e+30 ///< ¶¨Òå±äÁ¿µÄ×î´óÖµ
+#define BDL_MIN -1e+30 ///< ¶¨Òå±äÁ¿µÄ×îĞ¡Öµ
+#define PRECISION 16 ///< ¶¨ÒåĞ¡ÊıµãºóĞèÒªÊ¹ÓÃµÄÎ»Êı
+#define ZERO 1e-16 ///< ¶¨ÒåÁãÖµ
 
-//ç‰©ç†å¸¸é‡
-#define Pi (4.0*atan(1.0)) ///< åœ†å‘¨ç‡
-#define G0 6.67408e-3 ///< ä¸‡æœ‰å¼•åŠ›å¸¸æ•°ã€‚æ³¨æ„è¿™é‡Œçš„é‡çº§æœ¬æ¥åº”è¯¥æ˜¯e-11ï¼Œè€ƒè™‘åˆ°å•ä½è½¬æ¢ï¼Œå–ç»´åº¦å•ä½ä¸ºmï¼Œå¯†åº¦å•ä½ä¸ºg/cm^3ï¼Œä¹˜ä»¥G0åˆ™é‡åŠ›å•ä½å³ä¸ºmGal
-#define T0 5.0e+4 ///< åœ°ç£åœºå¹³å‡å¼ºåº¦
-//å®å‡½æ•°
-#define MAX(a,b) (a>b?a:b) ///< è¿”å›aä¸bçš„æœ€å¤§å€¼
-#define MIN(a,b) (a<b?a:b) ///< è¿”å›aä¸bçš„æœ€å°å€¼
-#define SetToBox(a,b,in) (MAX(a,MIN(b,in))) ///< è¿”å›aä¸bä¹‹é—´çš„ä¸€ä¸ªå€¼ï¼Œè‹¥inåœ¨aä¸bä¹‹é—´åˆ™ç›´æ¥è¿”å›ï¼Œå¦åˆ™è¿”å›è¾ƒè¿‘çš„è¾¹ç•Œå€¼
-//ç»ˆç«¯æ˜¾ç¤ºæ§åˆ¶ç¬¦
-#define BOLDRED "\033[1m\033[31m" ///< è®¾ç½®åç»­å­—ç¬¦å­—ä½“ä¸ºçº¢è‰²åŠ ç²—
-#define BOLDGREEN "\033[1m\033[32m" ///< è®¾ç½®åç»­å­—ç¬¦å­—ä½“ä¸ºç»¿è‰²åŠ ç²—
-#define BOLDYELLOW "\033[1m\033[33m" ///< è®¾ç½®åç»­å­—ç¬¦å­—ä½“ä¸ºé»„è‰²åŠ ç²—
-#define BOLDBLUE "\033[1m\033[34m" ///< è®¾ç½®åç»­å­—ç¬¦å­—ä½“ä¸ºè“è‰²åŠ ç²—
-#define UNDERLINE "\033[1m\033[4m" ///< è®¾ç½®åç»­å­—ç¬¦ä¸ºæ·»åŠ ä¸‹åˆ’çº¿
-#define RESET "\033[0m" ///< é‡ç½®å­—ç¬¦è®¾ç½®
-#define MOVEUP(x) printf("\033[%dA", (x)) ///< å°†å…‰æ ‡å‘ä¸ŠæŒªxè¡Œ
-#define MOVEDOWN(x) printf("\033[%dB", (x)) ///< å°†å…‰æ ‡å‘ä¸‹å¨œxè¡Œ
-#define MOVELEFT(x) printf("\033[%dD", (x)) ///< å°†å…‰æ ‡å‘å·¦å¨œxå­—ç¬¦
-#define MOVERIGHT(x) printf("\033[%dC", (x)) ///< å°†å…‰æ ‡å‘å³å¨œxå­—ç¬¦
-#define MOVETO(y,x) printf("\033[%d;%dH", (y), (x)) ///< å°†å…‰æ ‡å‘å³å¨œåŠ¨yå­—ç¬¦,å‘ä¸ŠæŒªåŠ¨xå­—ç¬¦
-#define CLEARLINE "\033[K" ///< æ¸…é™¤æœ¬è¡Œ
-#define CLEARALL "\033[2J" ///< æ¸…é™¤ç»ˆç«¯æ»¡å±
-//æ•°æ®ç»“æ„
-typedef vector<int> _1iArray; ///< æ•´å½¢ä¸€ç»´å‘é‡
-typedef vector<double> _1dArray; ///< åŒç²¾åº¦æµ®ç‚¹ä¸€ç»´å‘é‡
-typedef vector<string> _1sArray; ///< å­—ç¬¦ä¸²ä¸€ç»´å‘é‡
-typedef vector<vector<int> > _2iArray; ///< æ•´å½¢æµ®ç‚¹äºŒç»´å‘é‡
-typedef vector<vector<double> > _2dArray; ///< åŒç²¾åº¦æµ®ç‚¹äºŒç»´å‘é‡
-typedef map<int,int> _int2intMap; ///< æ•´å‹åˆ°æ•´å½¢çš„æ˜ å°„
-//æ¨¡å‹å—ä½“å‚æ•°
+//ÎïÀí³£Á¿
+#define Pi (4.0*atan(1.0)) ///< Ô²ÖÜÂÊ
+#define G0 6.67408e-3 ///< ÍòÓĞÒıÁ¦³£Êı¡£×¢ÒâÕâÀïµÄÁ¿¼¶±¾À´Ó¦¸ÃÊÇe-11£¬¿¼ÂÇµ½µ¥Î»×ª»»£¬È¡Î¬¶Èµ¥Î»Îªm£¬ÃÜ¶Èµ¥Î»Îªg/cm^3£¬³ËÒÔG0ÔòÖØÁ¦µ¥Î»¼´ÎªmGal
+#define T0 5.0e+4 ///< µØ´Å³¡Æ½¾ùÇ¿¶È
+//ºêº¯Êı
+#define MAX(a,b) (a>b?a:b) ///< ·µ»ØaÓëbµÄ×î´óÖµ
+#define MIN(a,b) (a<b?a:b) ///< ·µ»ØaÓëbµÄ×îĞ¡Öµ
+#define SetToBox(a,b,in) (MAX(a,MIN(b,in))) ///< ·µ»ØaÓëbÖ®¼äµÄÒ»¸öÖµ£¬ÈôinÔÚaÓëbÖ®¼äÔòÖ±½Ó·µ»Ø£¬·ñÔò·µ»Ø½Ï½üµÄ±ß½çÖµ
+//ÖÕ¶ËÏÔÊ¾¿ØÖÆ·û
+#define BOLDRED "\033[1m\033[31m" ///< ÉèÖÃºóĞø×Ö·û×ÖÌåÎªºìÉ«¼Ó´Ö
+#define BOLDGREEN "\033[1m\033[32m" ///< ÉèÖÃºóĞø×Ö·û×ÖÌåÎªÂÌÉ«¼Ó´Ö
+#define BOLDYELLOW "\033[1m\033[33m" ///< ÉèÖÃºóĞø×Ö·û×ÖÌåÎª»ÆÉ«¼Ó´Ö
+#define BOLDBLUE "\033[1m\033[34m" ///< ÉèÖÃºóĞø×Ö·û×ÖÌåÎªÀ¶É«¼Ó´Ö
+#define UNDERLINE "\033[1m\033[4m" ///< ÉèÖÃºóĞø×Ö·ûÎªÌí¼ÓÏÂ»®Ïß
+#define RESET "\033[0m" ///< ÖØÖÃ×Ö·ûÉèÖÃ
+#define MOVEUP(x) printf("\033[%dA", (x)) ///< ½«¹â±êÏòÉÏÅ²xĞĞ
+#define MOVEDOWN(x) printf("\033[%dB", (x)) ///< ½«¹â±êÏòÏÂÄÈxĞĞ
+#define MOVELEFT(x) printf("\033[%dD", (x)) ///< ½«¹â±êÏò×óÄÈx×Ö·û
+#define MOVERIGHT(x) printf("\033[%dC", (x)) ///< ½«¹â±êÏòÓÒÄÈx×Ö·û
+#define MOVETO(y,x) printf("\033[%d;%dH", (y), (x)) ///< ½«¹â±êÏòÓÒÄÈ¶¯y×Ö·û,ÏòÉÏÅ²¶¯x×Ö·û
+#define CLEARLINE "\033[K" ///< Çå³ı±¾ĞĞ
+#define CLEARALL "\033[2J" ///< Çå³ıÖÕ¶ËÂúÆÁ
+//Êı¾İ½á¹¹
+typedef vector<int> _1iArray; ///< ÕûĞÎÒ»Î¬ÏòÁ¿
+typedef vector<double> _1dArray; ///< Ë«¾«¶È¸¡µãÒ»Î¬ÏòÁ¿
+typedef vector<string> _1sArray; ///< ×Ö·û´®Ò»Î¬ÏòÁ¿
+typedef vector<vector<int> > _2iArray; ///< ÕûĞÎ¸¡µã¶şÎ¬ÏòÁ¿
+typedef vector<vector<double> > _2dArray; ///< Ë«¾«¶È¸¡µã¶şÎ¬ÏòÁ¿
+typedef map<int,int> _int2intMap; ///< ÕûĞÍµ½ÕûĞÎµÄÓ³Éä
+//Ä£ĞÍ¿éÌå²ÎÊı
 struct modelist{
 	char mod_type[1024];
 	char val_type[1024];
@@ -61,33 +61,33 @@ struct modelist{
 	double mod_value;
 };
 typedef vector<modelist> modelistArray;
-//ç›´è§’åæ ‡ç³»ç‚¹
+//Ö±½Ç×ø±êÏµµã
 struct cpoint{
 	int id = -1;
 	double x = BDL_MAX; double y = BDL_MAX; double z = BDL_MAX;
 };
 typedef vector<cpoint> cpointArray;
 typedef map<string,cpoint> _str2pointMap;
-//è§‚æµ‹ç‚¹
+//¹Û²âµã
 struct obspoint : public cpoint{
 	double val = BDL_MAX; double dev = BDL_MAX;
 };
 typedef vector<obspoint> obspointArray;
-//å—ä½“
+//¿éÌå
 struct cube{
 	cpoint cen;
 	int ids[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
 	double dx = BDL_MAX; double dy = BDL_MAX; double dz = BDL_MAX;
 };
 typedef vector<cube> cubeArray;
-/*************************æ•°æ®ç»“æ„å‡½æ•°********************************/
-cpoint operator -(cpoint,cpoint); //çŸ¢é‡å‡æ³•
-double modCpoint(cpoint); //çŸ¢é‡æ¨¡
-/*************************å…¨å±€å‡½æ•°********************************/
-double arctg(double); //æ­£è´Ÿåˆ†ç¦»çš„atanå‡½æ•° æ­£æ•°è¿”å›atan è´Ÿæ•°è¿”å›atan+pi
-stringstream str2ss(string); //å°†stringè½¬æ¢ä¸ºstringstream
-string cpoint_id(cpoint); //è¿”å›ä¸€ä¸ªcpointçš„ä½ç½®id
-int open_infile(ifstream&,char*); //æµ‹è¯•æ‰“å¼€è¾“å…¥æ–‡ä»¶ å¦‚æœæˆåŠŸåˆ™è¿”å›0å¹¶è¾“å‡ºä¿¡æ¯ å¦åˆ™è¿”å›1
-int open_outfile(ofstream&,char*); //æµ‹è¯•æ‰“å¼€è¾“å‡ºæ–‡ä»¶ å¦‚æœæˆåŠŸåˆ™è¿”å›0å¹¶è¾“å‡ºä¿¡æ¯ å¦åˆ™è¿”å›1
-double grid_interpolate(double,double,double,double,double,double,double,double,double,double); //è§„åˆ™ç½‘ç»œæ’å€¼
+/*************************Êı¾İ½á¹¹º¯Êı********************************/
+cpoint operator -(cpoint,cpoint); //Ê¸Á¿¼õ·¨
+double modCpoint(cpoint); //Ê¸Á¿Ä£
+/*************************È«¾Öº¯Êı********************************/
+double arctg(double); //Õı¸º·ÖÀëµÄatanº¯Êı ÕıÊı·µ»Øatan ¸ºÊı·µ»Øatan+pi
+stringstream str2ss(string); //½«string×ª»»Îªstringstream
+string cpoint_id(cpoint); //·µ»ØÒ»¸öcpointµÄÎ»ÖÃid
+int open_infile(ifstream&,char*); //²âÊÔ´ò¿ªÊäÈëÎÄ¼ş Èç¹û³É¹¦Ôò·µ»Ø0²¢Êä³öĞÅÏ¢ ·ñÔò·µ»Ø1
+int open_outfile(ofstream&,char*); //²âÊÔ´ò¿ªÊä³öÎÄ¼ş Èç¹û³É¹¦Ôò·µ»Ø0²¢Êä³öĞÅÏ¢ ·ñÔò·µ»Ø1
+double grid_interpolate(double,double,double,double,double,double,double,double,double,double); //¹æÔòÍøÂç²åÖµ
 #endif

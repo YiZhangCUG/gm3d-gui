@@ -1,6 +1,6 @@
 #include "head_func.h"
-/*************************æ•°æ®ç»“æ„å‡½æ•°********************************/
-//cpointå‡æ³•
+/*************************Êı¾İ½á¹¹º¯Êı********************************/
+//cpoint¼õ·¨
 cpoint operator -(cpoint a, cpoint b){
 	cpoint m;
 	m.x=a.x-b.x;
@@ -8,25 +8,25 @@ cpoint operator -(cpoint a, cpoint b){
 	m.z=a.z-b.z;
 	return m;
 }
-//cpointæ¨¡é•¿
+//cpointÄ£³¤
 double modCpoint(cpoint v){
 	return sqrt(v.x*v.x+v.y*v.y+v.z*v.z);
 }
-/*************************å…¨å±€å‡½æ•°********************************/
-//æ­£è´Ÿåˆ†ç¦»çš„atanå‡½æ•° æ­£æ•°è¿”å›atan è´Ÿæ•°è¿”å›atan+pi
+/*************************È«¾Öº¯Êı********************************/
+//Õı¸º·ÖÀëµÄatanº¯Êı ÕıÊı·µ»Øatan ¸ºÊı·µ»Øatan+pi
 double arctg(double v){
 	double ang;
 	if(v>=0) ang=atan(v);
 	else if(v<0) ang=atan(v)+Pi;
 	return ang;
 }
-//å°†stringè½¬æ¢ä¸ºstringstream
+//½«string×ª»»Îªstringstream
 stringstream str2ss(string s){
 	stringstream sstr;
 	sstr.str(""); sstr.clear(); sstr.str(s);
 	return sstr;
 }
-//è¿”å›ä¸€ä¸ªcpointçš„ä½ç½®idå­—ç¬¦ä¸²
+//·µ»ØÒ»¸öcpointµÄÎ»ÖÃid×Ö·û´®
 string cpoint_id(cpoint c){
 	string vert_id, mid_id;
 	stringstream sstemp;
@@ -40,7 +40,7 @@ string cpoint_id(cpoint c){
 	vert_id = vert_id + " " + mid_id;
 	return vert_id;
 }
-//æµ‹è¯•æ‰“å¼€è¾“å…¥æ–‡ä»¶ å¦‚æœæˆåŠŸåˆ™è¿”å›0å¹¶è¾“å‡ºä¿¡æ¯ å¦åˆ™è¿”å›1
+//²âÊÔ´ò¿ªÊäÈëÎÄ¼ş Èç¹û³É¹¦Ôò·µ»Ø0²¢Êä³öĞÅÏ¢ ·ñÔò·µ»Ø1
 int open_infile(ifstream &infile,char* filename){
 	infile.open(filename);
 	if (!infile){
@@ -49,7 +49,7 @@ int open_infile(ifstream &infile,char* filename){
 	}
 	return 0;
 }
-//æµ‹è¯•æ‰“å¼€è¾“å‡ºæ–‡ä»¶ å¦‚æœæˆåŠŸåˆ™è¿”å›0å¹¶è¾“å‡ºä¿¡æ¯ å¦åˆ™è¿”å›1
+//²âÊÔ´ò¿ªÊä³öÎÄ¼ş Èç¹û³É¹¦Ôò·µ»Ø0²¢Êä³öĞÅÏ¢ ·ñÔò·µ»Ø1
 int open_outfile(ofstream &outfile,char* filename){
 	outfile.open(filename);
 	if (!outfile){
@@ -59,8 +59,8 @@ int open_outfile(ofstream &outfile,char* filename){
 	return 0;
 }
 
-//è§„åˆ™ç½‘ç»œæ’å€¼ é•¿æ–¹å½¢å†…æ•°æ®æ’å€¼ è·ç¦»å¹³æ–¹åæ¯”
-/*é•¿æ–¹ä½“ç¤ºæ„å›¾*/
+//¹æÔòÍøÂç²åÖµ ³¤·½ĞÎÄÚÊı¾İ²åÖµ ¾àÀëÆ½·½·´±È
+/*³¤·½ÌåÊ¾ÒâÍ¼*/
 // y
 // |
 // |
@@ -69,10 +69,10 @@ int open_outfile(ofstream &outfile,char* filename){
 // |            |
 // |            |
 // 0------------1--->x
-// å·¦ä¸‹è§’åæ ‡x0 y0
-// å—ä½“å°ºå¯¸dx dy
-// æ’å€¼ç‚¹åæ ‡x y
-// å››ä¸ªè§’ç‚¹å€¼
+// ×óÏÂ½Ç×ø±êx0 y0
+// ¿éÌå³ß´çdx dy
+// ²åÖµµã×ø±êx y
+// ËÄ¸ö½ÇµãÖµ
 double grid_interpolate(double x0,double y0,double dx,double dy,double x,double y,
 					double d0,double d1,double d2,double d3)
 {

@@ -16,7 +16,7 @@ int GM3D::AddRegularBlock(modelist para_list){
 				if (model_cube_[i].cen.x >= xmin && model_cube_[i].cen.x <= xmax &&
 					model_cube_[i].cen.y >= ymin && model_cube_[i].cen.y <= ymax &&
 					model_cube_[i].cen.z >= zmin && model_cube_[i].cen.z <= zmax){
-					model_block_val_[i] = para_list.mod_value; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+					model_block_val_[i] = para_list.mod_value; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					model_added = true;
 				}
 			}
@@ -27,7 +27,7 @@ int GM3D::AddRegularBlock(modelist para_list){
 					model_cube_[i].cen.y >= ymin && model_cube_[i].cen.y <= ymax &&
 					model_cube_[i].cen.z >= zmin && model_cube_[i].cen.z <= zmax){
 					if (model_block_val_[i] == BDL_MAX)
-						model_block_val_[i] = para_list.mod_value; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+						model_block_val_[i] = para_list.mod_value; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					else
 						model_block_val_[i] += para_list.mod_value;
 					model_added = true;
@@ -39,7 +39,7 @@ int GM3D::AddRegularBlock(modelist para_list){
 				if (model_cube_[i].cen.x >= xmin && model_cube_[i].cen.x <= xmax &&
 					model_cube_[i].cen.y >= ymin && model_cube_[i].cen.y <= ymax &&
 					model_cube_[i].cen.z >= zmin && model_cube_[i].cen.z <= zmax){
-					model_block_val_[i] = BDL_MAX; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+					model_block_val_[i] = BDL_MAX; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					model_added = true;
 				}
 			}

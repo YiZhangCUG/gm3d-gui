@@ -6,7 +6,7 @@ int GM3D::ForwardVzy(char* noise_level){
 	double R222,R122,R212,R112,R221,R121,R211,R111;
 	double G222,G122,G212,G112,G221,G121,G211,G111;
 
-	//åˆå§‹åŒ–æ­£æ¼”å€¼å’Œä¸ç¡®å®šåº¦
+	//³õÊ¼»¯ÕıÑİÖµºÍ²»È·¶¨¶È
 	for (int i = 0; i < obs_num_; i++){
 		obs_p_[i].val = obs_p_[i].dev = 0.0;
 	}
@@ -16,7 +16,7 @@ int GM3D::ForwardVzy(char* noise_level){
 		noise_mean = noise_dev = 0.0;
 	}
 
-	//æ·»åŠ é«˜æ–¯å™ªå£°å€¼
+	//Ìí¼Ó¸ßË¹ÔëÉùÖµ
 	default_random_engine generator;
 	normal_distribution<double> dist(noise_mean, noise_dev);
 

@@ -1,6 +1,6 @@
 #ifndef _PROGRESS_BAR_
 #define _PROGRESS_BAR_
-#include <sys/ioctl.h>
+//#include </*sys/ioctl.h*/>
 #include <iostream>
 #include <iomanip>
 #include <cstring>

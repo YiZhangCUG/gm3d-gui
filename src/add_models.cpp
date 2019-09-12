@@ -10,7 +10,7 @@ int GM3D::AddModels(char* filename){
 	while(getline(infile,temp_str)){
 		if (*(temp_str.begin()) == '#') continue;
 		else{
-			//æŒ‰æ¯è¡Œ5ä¸ªæ•°æ®è§£æ åˆå§‹åŒ–ä¸ºå«è§‚æµ‹å€¼ä¸ä¸ç¡®å®šåº¦çš„è§‚æµ‹ç‚¹
+			//°´Ã¿ĞĞ5¸öÊı¾İ½âÎö ³õÊ¼»¯Îªº¬¹Û²âÖµÓë²»È·¶¨¶ÈµÄ¹Û²âµã
 			if (4 == sscanf(temp_str.c_str(),"%s %s %lf %s",
 				temp_list.mod_type,temp_list.val_type,&temp_list.mod_value,temp_list.mod_para)){
 				model_list_.push_back(temp_list);

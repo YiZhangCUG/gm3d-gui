@@ -8,7 +8,7 @@ int GM3D::InitObs(char* obs_para){
 	double xmin,xmax,ymin,ymax;
 	double xs,xe,ys,ye,eleva,dx,dy;
 
-	//æŒ‰æ ¼å¼è§£æå‚æ•° åˆå§‹åŒ–è§‚æµ‹ä½ç½® ç”¨äºæ­£æ¼”è®¡ç®—
+	//°´¸ñÊ½½âÎö²ÎÊı ³õÊ¼»¯¹Û²âÎ»ÖÃ ÓÃÓÚÕıÑİ¼ÆËã
 	if (7 == sscanf(obs_para,"%lf/%lf/%lf/%lf/%lf/%lf/%lf",&xs,&dx,&xe,&ys,&dy,&ye,&eleva)){
 		xmin = MIN(xs,xe); xmax = MAX(xs,xe);
 		ymin = MIN(ys,ye); ymax = MAX(ys,ye);
@@ -26,7 +26,7 @@ int GM3D::InitObs(char* obs_para){
 			x += dx;
 		}
 	}
-	//è§£æå¤±è´¥ æŒ‰æ–‡ä»¶è¯»å…¥ ç”¨äºåæ¼”ä½¿ç”¨æˆ–è€…æ­£æ¼”è®¡ç®—
+	//½âÎöÊ§°Ü °´ÎÄ¼ş¶ÁÈë ÓÃÓÚ·´ÑİÊ¹ÓÃ»òÕßÕıÑİ¼ÆËã
 	else{
 		ifstream infile;
 		if (open_infile(infile,obs_para)) return -1;
@@ -34,7 +34,7 @@ int GM3D::InitObs(char* obs_para){
 		while(getline(infile,temp_str)){
 			if (*(temp_str.begin()) == '#') continue;
 			else{
-				//æŒ‰æ¯è¡Œ3ä¸ªæ•°æ®è§£æ åˆå§‹åŒ–ä¸ºç”¨äºæ­£æ¼”çš„è§‚æµ‹ç‚¹
+				//°´Ã¿ĞĞ3¸öÊı¾İ½âÎö ³õÊ¼»¯ÎªÓÃÓÚÕıÑİµÄ¹Û²âµã
 				if (3 == sscanf(temp_str.c_str(),"%lf %lf %lf",&temp_obs.y,&temp_obs.x,&temp_obs.z)){
 					temp_obs.z *= -1.0;
 					temp_obs.id = obs_p_.size();

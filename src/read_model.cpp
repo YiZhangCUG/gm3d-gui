@@ -10,14 +10,14 @@ int GM3D::ReadModel(char* filename,char* input_forward_model_name){
 	stringstream temp_ss;
 
 	ifstream mshin;
-	if (open_infile(mshin,filename)) return -1; //æ£€æŸ¥å¹¶æ‰“å¼€æ¨¡å‹æ–‡ä»¶
+	if (open_infile(mshin,filename)) return -1; //¼ì²é²¢´ò¿ªÄ£ĞÍÎÄ¼ş
 	while(getline(mshin,temp_str)){
-		//è¯»å…¥æ¨¡å‹ç©ºé—´é¡¶ç‚¹é›† mshæ–‡ä»¶ç‰ˆæœ¬ä¸º2.2
+		//¶ÁÈëÄ£ĞÍ¿Õ¼ä¶¥µã¼¯ mshÎÄ¼ş°æ±¾Îª2.2
 		if (temp_str == "$Nodes"){
 			getline(mshin,temp_str);
 			temp_ss = str2ss(temp_str);
-			temp_ss >> vert_num_; //ç¬¬ä¸€ä¸ªæ•°ä¸ºé¡¶ç‚¹çš„ä¸ªæ•°
-			model_vert_.resize(vert_num_); //å¼€è¾Ÿç©ºé—´
+			temp_ss >> vert_num_; //µÚÒ»¸öÊıÎª¶¥µãµÄ¸öÊı
+			model_vert_.resize(vert_num_); //¿ª±Ù¿Õ¼ä
 			for (int i = 0; i < vert_num_; i++){
 				getline(mshin,temp_str);
 				temp_ss = str2ss(temp_str);
@@ -25,19 +25,19 @@ int GM3D::ReadModel(char* filename,char* input_forward_model_name){
 				model_vert_[i] = temp_vert;
 			}
 		}
-		//è¯»å…¥æ¨¡å‹ç©ºé—´å•å…ƒä½“
+		//¶ÁÈëÄ£ĞÍ¿Õ¼äµ¥ÔªÌå
 		else if (temp_str == "$Elements"){
 			getline(mshin,temp_str);
 			temp_ss = str2ss(temp_str);
-			temp_ss >> model_num_; //ç¬¬ä¸€ä¸ªæ•°ä¸ºæ€»å…ƒç´ çš„ä¸ªæ•° åŒ…å«äº†æ‰€æœ‰ç±»å‹çš„å…ƒç´  æ¯”å¦‚ä¸‰è§’å½¢ å››è¾¹å½¢ å—ä½“ç­‰
+			temp_ss >> model_num_; //µÚÒ»¸öÊıÎª×ÜÔªËØµÄ¸öÊı °üº¬ÁËËùÓĞÀàĞÍµÄÔªËØ ±ÈÈçÈı½ÇĞÎ ËÄ±ßĞÎ ¿éÌåµÈ
 			model_cube_.resize(model_num_);
 			for (int i = 0; i < model_num_; i++){
 				getline(mshin,temp_str);
 				temp_ss = str2ss(temp_str);
 				temp_ss >> temp_cu.cen.id >> ele_type;
-				//åªè¯»å…¥å—ä½“
+				//Ö»¶ÁÈë¿éÌå
 				if (ele_type == 5){
-					temp_ss >> attri_num; //è·³è¿‡æ¨¡å‹å•å…ƒçš„å‡ ä½•ç»„ä¸ç‰©ç†ç»„ç­‰ä¿¡æ¯ ä»¥åå¯èƒ½ä¼šæœ‰ç”¨
+					temp_ss >> attri_num; //Ìø¹ıÄ£ĞÍµ¥ÔªµÄ¼¸ºÎ×éÓëÎïÀí×éµÈĞÅÏ¢ ÒÔºó¿ÉÄÜ»áÓĞÓÃ
 					for (int a = 0; a < attri_num; a++)
 						temp_ss >> temp_attri;
 					for (int a = 0; a < 8; a++)
@@ -46,44 +46,44 @@ int GM3D::ReadModel(char* filename,char* input_forward_model_name){
 				}
 			}
 		}
-		else continue; //ä¸èƒ½è¯†åˆ«çš„å•å…ƒéƒ½è¢«å¿½ç•¥äº†
+		else continue; //²»ÄÜÊ¶±ğµÄµ¥Ôª¶¼±»ºöÂÔÁË
 	}
 	mshin.close();
 
-	//ç¬¬äºŒæ¬¡è¯»å…¥æ¨¡å‹æ–‡ä»¶ åˆå§‹åŒ–æ¨¡å‹å•å…ƒå±æ€§
-	if (open_infile(mshin,filename)) return -1; //æ£€æŸ¥å¹¶æ‰“å¼€æ¨¡å‹æ–‡ä»¶
+	//µÚ¶ş´Î¶ÁÈëÄ£ĞÍÎÄ¼ş ³õÊ¼»¯Ä£ĞÍµ¥ÔªÊôĞÔ
+	if (open_infile(mshin,filename)) return -1; //¼ì²é²¢´ò¿ªÄ£ĞÍÎÄ¼ş
 	while(getline(mshin,temp_str)){
-		//è¯»å…¥æ¨¡å‹å•å…ƒå±æ€§ æ³¨æ„å› ä¸ºmshæ–‡ä»¶ä¸­$ElementDataå¹¶æœªæ³¨æ˜æ‰€å±å…ƒç´ ç±»å‹
-		//æ‰€ä»¥å¯èƒ½ä¼šå°†å…¶ä»–å…ƒç´ ç±»å‹çš„å±æ€§å€¼ä¹Ÿè¯»å…¥ ä½†å› ä¸ºå…¶åœ¨pyIdMapä¸­å¹¶æœªæ³¨å†Œ æ‰€ä»¥å±æ€§å€¼ä¼šå…¨ä¸º0 åœ¨åç»­ä½¿ç”¨æ—¶æˆ‘ä»¬éœ€è¦é€šè¿‡åç§°è¾¨åˆ«
+		//¶ÁÈëÄ£ĞÍµ¥ÔªÊôĞÔ ×¢ÒâÒòÎªmshÎÄ¼şÖĞ$ElementData²¢Î´×¢Ã÷ËùÊôÔªËØÀàĞÍ
+		//ËùÒÔ¿ÉÄÜ»á½«ÆäËûÔªËØÀàĞÍµÄÊôĞÔÖµÒ²¶ÁÈë µ«ÒòÎªÆäÔÚpyIdMapÖĞ²¢Î´×¢²á ËùÒÔÊôĞÔÖµ»áÈ«Îª0 ÔÚºóĞøÊ¹ÓÃÊ±ÎÒÃÇĞèÒªÍ¨¹ıÃû³Æ±æ±ğ
 		if (temp_str == "$ElementData"){
-			temp_model.resize(model_num_,0.0); //åˆå§‹åŒ–temp_model ä¸ºè¯»å…¥æ¨¡å‹å•å…ƒå±æ€§åšå‡†å¤‡
-			for (int i = 0; i < 2; i++) //å…ˆè¯»å…¥å…ƒç´ å—çš„åç§° æ·»åŠ åˆ°æ•°ç»„
+			temp_model.resize(model_num_,0.0); //³õÊ¼»¯temp_model Îª¶ÁÈëÄ£ĞÍµ¥ÔªÊôĞÔ×ö×¼±¸
+			for (int i = 0; i < 2; i++) //ÏÈ¶ÁÈëÔªËØ¿éµÄÃû³Æ Ìí¼Óµ½Êı×é
 				getline(mshin,temp_str);
 			input_model_names_.push_back(temp_str);
-			for (int i = 0; i < 6; i++) //è·³è¿‡å…ƒç´ å±æ€§å‰é¢çš„å€¼ æœ€åä¸€æ¬¡ä¸ºå½“å‰å…ƒç´ å—çš„ä¸ªæ•°
+			for (int i = 0; i < 6; i++) //Ìø¹ıÔªËØÊôĞÔÇ°ÃæµÄÖµ ×îºóÒ»´ÎÎªµ±Ç°ÔªËØ¿éµÄ¸öÊı
 				getline(mshin,temp_str);
 			temp_ss = str2ss(temp_str);
 			temp_ss >> temp_int;
 			for (int i = 0; i < temp_int; i++){
 				getline(mshin,temp_str);
 				temp_ss = str2ss(temp_str);
-				temp_ss >> temp_id >> temp_val; //è¯»å…¥å•å…ƒä½“ç´¢å¼•ä¸å±æ€§å€¼
+				temp_ss >> temp_id >> temp_val; //¶ÁÈëµ¥ÔªÌåË÷ÒıÓëÊôĞÔÖµ
 				temp_model[temp_id] = temp_val;
 			}
 			input_models_.push_back(temp_model);
 			temp_model.clear();
 		}
-		else continue; //ä¸èƒ½è¯†åˆ«çš„å•å…ƒéƒ½è¢«å¿½ç•¥äº†
+		else continue; //²»ÄÜÊ¶±ğµÄµ¥Ôª¶¼±»ºöÂÔÁË
 	}
 	mshin.close();
 
-	//æ¸…ç†æ˜ å°„
+	//ÇåÀíÓ³Éä
 	temp_model.clear();
 	vector <double>().swap(temp_model);
 
-	//åˆå§‹åŒ–æ•°ç»„
+	//³õÊ¼»¯Êı×é
 	forward_model_.resize(model_num_,0.0);
-	//åŒ¹é…æ•°æ®åç§°
+	//Æ¥ÅäÊı¾İÃû³Æ
 	char forward_model_name[1024] = "\"";
 	strcat(forward_model_name,input_forward_model_name);
 	strcat(forward_model_name,"\"");
@@ -94,7 +94,7 @@ int GM3D::ReadModel(char* filename,char* input_forward_model_name){
 		}
 	}
 
-	//è®¡ç®—å—ä½“çš„ä¸­å¿ƒä½ç½®å’Œå°ºå¯¸
+	//¼ÆËã¿éÌåµÄÖĞĞÄÎ»ÖÃºÍ³ß´ç
 	cpoint corner[8];
 	for (int i = 0; i < model_num_; i++){
 		for (int j = 0; j < 8; j++){

@@ -13,6 +13,8 @@ add_executable(gm3d_gui WIN32 MACOSX_BUNDLE ${DIR_SRC})
 
 include_directories(/usr/local/include)
 
-find_library(FLTK_LIBRARY fltk HINTS /usr/local/lib)
+find_library(HINTS /usr/local/lib)
+#find_library(FLTK_LIBRARY fltk HINTS /usr/local/lib)
+
 
 target_link_libraries(gm3d_gui PUBLIC ${FLTK_LIBRARY})

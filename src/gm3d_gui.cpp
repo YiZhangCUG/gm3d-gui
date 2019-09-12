@@ -64,7 +64,7 @@ void cb_mesh_file_btn(Fl_Widget*, void*){
   // Block until user picks something.
   while(chooser.shown()) { Fl::wait(); }
 
-  //ä»æ–‡ä»¶çš„ç»å¯¹è·¯å¾„ä¸­åˆ†ç¦»æ–‡ä»¶åå¹¶ä»è¾“å‡ºæ¡†è¾“å‡º
+  //´ÓÎÄ¼şµÄ¾ø¶ÔÂ·¾¶ÖĞ·ÖÀëÎÄ¼şÃû²¢´ÓÊä³ö¿òÊä³ö
   if (chooser.value() != NULL)
   {
     strcpy(mesh_filename,chooser.value());
@@ -92,7 +92,7 @@ void cb_mod_para_file_btn(Fl_Widget*, void*){
   // Block until user picks something.
   while(chooser.shown()) { Fl::wait(); }
 
-  //ä¸‹é¢æˆ‘ä»¬è¯»å…¥æ–‡ä»¶å¹¶æ·»åŠ æ¨¡å‹å‚æ•°åˆ°åˆ—è¡¨æ˜¾ç¤º
+  //ÏÂÃæÎÒÃÇ¶ÁÈëÎÄ¼ş²¢Ìí¼ÓÄ£ĞÍ²ÎÊıµ½ÁĞ±íÏÔÊ¾
   std::ifstream modpara_in;
   modpara_in.open(chooser.value());
   if (!modpara_in)
@@ -149,7 +149,7 @@ void cb_mod_file_out_btn(Fl_Widget*, void*){
   // Block until user picks something.
   while(chooser.shown()) { Fl::wait(); }
 
-  //ä»æ–‡ä»¶çš„ç»å¯¹è·¯å¾„ä¸­åˆ†ç¦»æ–‡ä»¶åå¹¶ä»è¾“å‡ºæ¡†è¾“å‡º
+  //´ÓÎÄ¼şµÄ¾ø¶ÔÂ·¾¶ÖĞ·ÖÀëÎÄ¼şÃû²¢´ÓÊä³ö¿òÊä³ö
   if (chooser.value() != NULL)
   {
     strcpy(out_msh_filename,chooser.value());
@@ -170,17 +170,17 @@ void cb_mod_file_out_btn(Fl_Widget*, void*){
 }
 
 void cb_build_mod_btn(Fl_Widget*, void*){
-  //é¦–å…ˆæ„å»ºä¸€ä¸ªGM3Då®ä¾‹
+  //Ê×ÏÈ¹¹½¨Ò»¸öGM3DÊµÀı
   GM3D gm3d_instance;
-  //è®¾ç½®åˆå§‹åŒ–å˜é‡
+  //ÉèÖÃ³õÊ¼»¯±äÁ¿
   char dimension[1024] = "10/20/990/10/20/990/10/20/490";
   char out_mshname[1024] = "Untitled.msh";
   char elename[1024] = "Untitled";
 
-  //å°†mesh_para_outputæ‹·è´åˆ°dimension
+  //½«mesh_para_output¿½±´µ½dimension
   strcpy(dimension, mesh_filename);
   //std::cout << dimension << std::endl;
-  //å°†mod_para_brwä¸­çš„æ¨¡å‹å‚æ•°åˆ—è¡¨æ‹·è´åˆ°ä¸€ä¸ªä¸´æ—¶å‚æ•°åˆ—è¡¨
+  //½«mod_para_brwÖĞµÄÄ£ĞÍ²ÎÊıÁĞ±í¿½±´µ½Ò»¸öÁÙÊ±²ÎÊıÁĞ±í
   std::stringstream temp_ss;
   modelist temp_list;
   modelistArray brw_model_list;
@@ -196,21 +196,21 @@ void cb_build_mod_btn(Fl_Widget*, void*){
       }
   }
 
-  //å°†brw_model_listæ‹·è´åˆ°GM3Dä¸­
+  //½«brw_model_list¿½±´µ½GM3DÖĞ
   gm3d_instance.get_model_list(brw_model_list);
-  //å°†mod_out_file_inputæ‹·è´åˆ°out_mshname
+  //½«mod_out_file_input¿½±´µ½out_mshname
   strcpy(out_mshname, out_msh_filename);
   if (!strcmp(out_mshname,"")){
     fl_message("Output file's name can't be empty !");
     return;
   }
-  //å°†mod_ele_input_buildæ‹·è´åˆ°elename
+  //½«mod_ele_input_build¿½±´µ½elename
   strcpy(elename, mod_ele_input_build->value());
   if (!strcmp(elename,"")){
     fl_message("Element data's name can't be empty !");
     return;
   }
-  //æ„å»ºæ¨¡å‹ç½‘ç»œ
+  //¹¹½¨Ä£ĞÍÍøÂç
   if(gm3d_instance.BuildRegularGrid(dimension)){
     fl_message("Mesh Parameters Load Error !");
     return;
@@ -219,12 +219,12 @@ void cb_build_mod_btn(Fl_Widget*, void*){
   gm3d_instance.RegisteredOuput(remove_null);
   if (gm3d_instance.OutMshFile(out_mshname,elename)) return;
 
-  //è¿™é‡Œéœ€è¦ä¸€ä¸ªè¾“å‡ºä¿¡æ¯çª—å£
+  //ÕâÀïĞèÒªÒ»¸öÊä³öĞÅÏ¢´°¿Ú
   fl_message("Model Construction Completed !");
   return;
 }
 
-/***********************************ä»¥ä¸‹æ˜¯æ­£æ¼”è®¡ç®—GUIå‡½æ•°******************************/
+/***********************************ÒÔÏÂÊÇÕıÑİ¼ÆËãGUIº¯Êı******************************/
 char in_msh_filename[1024];
 char in_obs_filename[1024];
 char out_res_filename[1024];
@@ -238,13 +238,13 @@ void cb_mod_file_input(Fl_Input*, void*){
 void cb_mod_file_btn(Fl_Widget*, void*){
   // Create the file chooser, and show it
   // directory, filter, chooser type, title
-  Fl_File_Chooser chooser(".", "*.msh", Fl_File_Chooser::SINGLE, "Create a model file.");
+  Fl_File_Chooser chooser(".", "*.msh, *.mst", Fl_File_Chooser::SINGLE, "Create a model file.");
   chooser.show();
 
   // Block until user picks something.
   while(chooser.shown()) { Fl::wait(); }
 
-  //ä»æ–‡ä»¶çš„ç»å¯¹è·¯å¾„ä¸­åˆ†ç¦»æ–‡ä»¶åå¹¶ä»è¾“å‡ºæ¡†è¾“å‡º
+  //´ÓÎÄ¼şµÄ¾ø¶ÔÂ·¾¶ÖĞ·ÖÀëÎÄ¼şÃû²¢´ÓÊä³ö¿òÊä³ö
   if (chooser.value() != NULL)
   {
     strcpy(in_msh_filename,chooser.value());
@@ -279,7 +279,7 @@ void cb_obs_file_btn(Fl_Widget*, void*){
   // Block until user picks something.
   while(chooser.shown()) { Fl::wait(); }
 
-  //ä»æ–‡ä»¶çš„ç»å¯¹è·¯å¾„ä¸­åˆ†ç¦»æ–‡ä»¶åå¹¶ä»è¾“å‡ºæ¡†è¾“å‡º
+  //´ÓÎÄ¼şµÄ¾ø¶ÔÂ·¾¶ÖĞ·ÖÀëÎÄ¼şÃû²¢´ÓÊä³ö¿òÊä³ö
   if (chooser.value() != NULL)
   {
     strcpy(in_obs_filename,chooser.value());
@@ -314,7 +314,7 @@ void cb_res_file_btn(Fl_Widget*, void*){
   // Block until user picks something.
   while(chooser.shown()) { Fl::wait(); }
 
-  //ä»æ–‡ä»¶çš„ç»å¯¹è·¯å¾„ä¸­åˆ†ç¦»æ–‡ä»¶åå¹¶ä»è¾“å‡ºæ¡†è¾“å‡º
+  //´ÓÎÄ¼şµÄ¾ø¶ÔÂ·¾¶ÖĞ·ÖÀëÎÄ¼şÃû²¢´ÓÊä³ö¿òÊä³ö
   if (chooser.value() != NULL)
   {
     strcpy(out_res_filename,chooser.value());
@@ -369,9 +369,9 @@ void cb_mag_data_check(Fl_Check_Button*, void*){
 }
 
 void cb_cal_btn(Fl_Button*, void*){
-  //é¦–å…ˆæ„å»ºä¸€ä¸ªGM3Då®ä¾‹
+  //Ê×ÏÈ¹¹½¨Ò»¸öGM3DÊµÀı
   GM3D gm3d_instance;
-  //è®¾ç½®åˆå§‹åŒ–å˜é‡
+  //ÉèÖÃ³õÊ¼»¯±äÁ¿
   char in_mshname[1024] = "Untitled.msh";
   char in_obspara[1024] = "Untitled.txt";
   char res_outfile[1024] = "Untitled";
@@ -386,11 +386,18 @@ void cb_cal_btn(Fl_Button*, void*){
   strcpy(ele_name,mod_ele_input->value());
   strcpy(noise_para,noise_para_input->value());
   strcpy(mag_para,mag_para_input->value());
-
-  if (gm3d_instance.ReadModel(in_mshname,ele_name))
-  {
-    fl_message("Model Load Error !");
-    return;
+  if(in_mshname[strlen(in_mshname)-1] == 'h'){
+    if (gm3d_instance.ReadModel(in_mshname,ele_name))
+    {
+      fl_message("Model Load Error !");
+      return;
+    }
+  }else if(in_mshname[strlen(in_mshname)-1] == 't'){
+    if (gm3d_instance.ReadModel_mst(in_mshname))
+    {
+      fl_message("Model Load Error !");
+      return;
+    }
   }
 
   if (gm3d_instance.InitObs(in_obspara))
@@ -533,6 +540,7 @@ void cb_cal_btn(Fl_Button*, void*){
       }
     }
   }
+  
 
   fl_message("Forward calculation completed !");
   return;

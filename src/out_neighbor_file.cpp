@@ -3,22 +3,22 @@
 int GM3D::OutNeighborFile(char* v_name,char* b_name){
 	/*
 	if (strcmp(v_name,"NULL") || strcmp(b_name,"NULL")){
-		//æ•´ç†å—ä½“é—´çš„ç›¸é‚»å…³ç³» å…ˆåˆå§‹åŒ–é¡¶ç‚¹ç›¸é‚»æ•°ç»„
+		//ÕûÀí¿éÌå¼äµÄÏàÁÚ¹ØÏµ ÏÈ³õÊ¼»¯¶¥µãÏàÁÚÊı×é
 		model_vert_neighbor_.resize(vert_num_);
 		for (int i = 0; i < vert_num_; i++)
 			model_vert_neighbor_[i].resize(8,-1);
 
-		//éå†æ‰€æœ‰å—ä½“æ•´ç†é¡¶ç‚¹ç›¸é‚»å…³ç³»
+		//±éÀúËùÓĞ¿éÌåÕûÀí¶¥µãÏàÁÚ¹ØÏµ
 		for (int i = 0; i < model_num_; i++){
 			for (int j = 0; j < 8; j++){
 				model_vert_neighbor_[model_cube_[i].ids[j]][j] = model_cube_[i].cen.id;
 			}
 		}
 
-		//éå†æ‰€æœ‰é¡¶ç‚¹ç›¸é‚»å…³ç³» æ‰€æœ‰å…±ç‚¹çš„å—ä½“éƒ½è¢«è®¤å®šä¸ºç›¸é‚»å—ä½“
+		//±éÀúËùÓĞ¶¥µãÏàÁÚ¹ØÏµ ËùÓĞ¹²µãµÄ¿éÌå¶¼±»ÈÏ¶¨ÎªÏàÁÚ¿éÌå
 		model_cube_neighbor_.resize(model_num_);
 
-		//å¾ªç¯é¡¶ç‚¹ç›¸é‚»åˆ—è¡¨ éƒ½ä¸ä¸º-1åˆ™ç›¸äº’æ·»åŠ 
+		//Ñ­»·¶¥µãÏàÁÚÁĞ±í ¶¼²»Îª-1ÔòÏà»¥Ìí¼Ó
 		for (int i = 0; i < vert_num_; i++){
 			for (int n = 0; n < 8; n++){
 				if (model_vert_neighbor_[i][n] != -1){
@@ -32,14 +32,14 @@ int GM3D::OutNeighborFile(char* v_name,char* b_name){
 			}
 		}
 
-		vector<int>::iterator pos; //æ•´å‹å‘é‡çš„è¿­ä»£å™¨
+		vector<int>::iterator pos; //ÕûĞÍÏòÁ¿µÄµü´úÆ÷
 		for (int i = 0; i < model_num_; i++){
-			sort(model_cube_neighbor_[i].begin(),model_cube_neighbor_[i].end()); //å¯¹é¡¶ç‚¹åºåˆ—ç”±å°åˆ°å¤§æ’åº
-			pos = unique(model_cube_neighbor_[i].begin(),model_cube_neighbor_[i].end()); //è·å–é‡å¤åºåˆ—å¼€å§‹çš„ä½ç½®
-			model_cube_neighbor_[i].erase(pos,model_cube_neighbor_[i].end()); //åˆ é™¤é‡å¤ç‚¹
+			sort(model_cube_neighbor_[i].begin(),model_cube_neighbor_[i].end()); //¶Ô¶¥µãĞòÁĞÓÉĞ¡µ½´óÅÅĞò
+			pos = unique(model_cube_neighbor_[i].begin(),model_cube_neighbor_[i].end()); //»ñÈ¡ÖØ¸´ĞòÁĞ¿ªÊ¼µÄÎ»ÖÃ
+			model_cube_neighbor_[i].erase(pos,model_cube_neighbor_[i].end()); //É¾³ıÖØ¸´µã
 		}
 
-		//æ¸…ç†æ•°ç»„
+		//ÇåÀíÊı×é
 		for (int i = 0; i < vert_num_; i++){
 			model_vert_neighbor_[i].clear();
 			vector <int>().swap(model_vert_neighbor_[i]);

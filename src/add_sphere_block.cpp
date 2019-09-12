@@ -20,7 +20,7 @@ int GM3D::AddSphereBlock(modelist para_list){
 				rad_limit = rad_x*rad_y*rad_z/sqrt(pow(rad_y*rad_z*sin(theta)*cos(phi),2) + pow(rad_x*rad_z*sin(theta)*sin(phi),2) + pow(rad_x*rad_y*cos(theta),2));
 
 				if (dist <= rad_limit){
-					model_block_val_[i] = para_list.mod_value; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+					model_block_val_[i] = para_list.mod_value; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					model_added = true;
 				}
 			}
@@ -39,7 +39,7 @@ int GM3D::AddSphereBlock(modelist para_list){
 
 				if (dist <= rad_limit){
 					if (model_block_val_[i] == BDL_MAX)
-						model_block_val_[i] = para_list.mod_value; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+						model_block_val_[i] = para_list.mod_value; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					else
 						model_block_val_[i] += para_list.mod_value;
 					model_added = true;
@@ -59,7 +59,7 @@ int GM3D::AddSphereBlock(modelist para_list){
 				rad_limit = rad_x*rad_y*rad_z/sqrt(pow(rad_y*rad_z*sin(theta)*cos(phi),2) + pow(rad_x*rad_z*sin(theta)*sin(phi),2) + pow(rad_x*rad_y*cos(theta),2));
 
 				if (dist <= rad_limit){
-					model_block_val_[i] = BDL_MAX; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+					model_block_val_[i] = BDL_MAX; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					model_added = true;
 				}
 			}

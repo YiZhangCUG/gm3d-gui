@@ -18,7 +18,7 @@ Fl_Return_Button *can_add_btn=(Fl_Return_Button *)0;
 Fl_Button *sig_add_btn=(Fl_Button *)0;
 Fl_Input *mod_val_input=(Fl_Input *)0;
 
-// å£°æ˜ä¸‰ä¸ªå­—ç¬¦ä¸²ç”¨äºä¿å­˜æ–°å»ºçš„æ¨¡å‹ç±»å‹å’Œèµ‹å€¼ç±»å‹
+// ÉùÃ÷Èı¸ö×Ö·û´®ÓÃÓÚ±£´æĞÂ½¨µÄÄ£ĞÍÀàĞÍºÍ¸³ÖµÀàĞÍ
 char add_mod_type[1024];
 char add_val_type[1024];
 char agn_val_type[1024];
@@ -81,8 +81,8 @@ void cb_bot_val_rbtn(Fl_Button*, void*){
   return;
 }
 
-// å£°æ˜ä¸€ä¸ªå­—ç¬¦ä¸²ç”¨äºä¿å­˜æ–°å»ºçš„æ¨¡å‹å‚æ•°å¹¶æ·»åŠ è‡³åˆ—è¡¨ä¸­
-// æ¨¡å‹å‚æ•°çš„æ’åˆ—ä¸º<æ¨¡å‹ç±»å‹> <èµ‹å€¼ç±»å‹> <ç‰©ç†å‚æ•°å­—ç¬¦ä¸²> <å‡ ä½•å‚æ•°å­—ç¬¦ä¸²>
+// ÉùÃ÷Ò»¸ö×Ö·û´®ÓÃÓÚ±£´æĞÂ½¨µÄÄ£ĞÍ²ÎÊı²¢Ìí¼ÓÖÁÁĞ±íÖĞ
+// Ä£ĞÍ²ÎÊıµÄÅÅÁĞÎª<Ä£ĞÍÀàĞÍ> <¸³ÖµÀàĞÍ> <ÎïÀí²ÎÊı×Ö·û´®> <¼¸ºÎ²ÎÊı×Ö·û´®>
 char add_mod_para[1024];
 
 void cb_sig_add_btn(Fl_Widget*, void*){
@@ -101,7 +101,7 @@ void cb_sig_add_btn(Fl_Widget*, void*){
   mod_para_brw->add(add_mod_para);
   return;
 }
-//å–æ¶ˆæ·»åŠ æ¨¡å‹
+//È¡ÏûÌí¼ÓÄ£ĞÍ
 void cb_can_add_btn(Fl_Widget*, void*){
 	add_mod_win->hide();
 	return;

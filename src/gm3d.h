@@ -7,23 +7,24 @@ class GM3D{
 public:
 	GM3D(){}
 	~GM3D(){}
-	int BuildRegularGrid(char*); //åˆå§‹åŒ–åæ¼”æ¨¡å‹ç©ºé—´
-	int AddModels(char*); //è¯»å–æ¨¡å‹å—ä½“å‚æ•°æ–‡ä»¶
-	void AddModels_GUI(); //æ·»åŠ æ¨¡å‹å—ä½“å‚æ•°
-	int AddRegularBlock(modelist); //æ·»åŠ æ™®é€šæ¨¡å‹å—ä½“
-	int AddTiltedBlock(modelist); //æ·»åŠ å€¾æ–œæ¨¡å‹å—ä½“
-	int AddSphereBlock(modelist); //æ·»åŠ çƒä½“æ¤­çƒä½“å—ä½“
-	int AddInterfaceBlock(modelist); //æ·»åŠ å¯†åº¦ç•Œé¢
-	//æ¨¡å‹æ“ä½œ
+	int BuildRegularGrid(char*); //³õÊ¼»¯·´ÑİÄ£ĞÍ¿Õ¼ä
+	int AddModels(char*); //¶ÁÈ¡Ä£ĞÍ¿éÌå²ÎÊıÎÄ¼ş
+	void AddModels_GUI(); //Ìí¼ÓÄ£ĞÍ¿éÌå²ÎÊı
+	int AddRegularBlock(modelist); //Ìí¼ÓÆÕÍ¨Ä£ĞÍ¿éÌå
+	int AddTiltedBlock(modelist); //Ìí¼ÓÇãĞ±Ä£ĞÍ¿éÌå
+	int AddSphereBlock(modelist); //Ìí¼ÓÇòÌåÍÖÇòÌå¿éÌå
+	int AddInterfaceBlock(modelist); //Ìí¼ÓÃÜ¶È½çÃæ
+	//Ä£ĞÍ²Ù×÷
 	int ReadModel(char*,char*);
-	//è¾“å‡ºæ¨¡å‹
-	int RegisteredOuput(bool); //æ³¨å†Œè¾“å‡ºçš„å—ä½“æ¨¡å‹
-	int OutMshFile(char*,string); //è¾“å‡ºæ¨¡å‹æ–‡ä»¶
-	int OutNeighborFile(char*,char*); //è¾“å‡ºæ¨¡å‹å—ä½“æˆ–é¡¶ç‚¹çš„ç›¸é‚»å…³ç³» æš‚ç¼“
-	//è§‚æµ‹æ•°æ®
+	int ReadModel_mst(char*);
+	//Êä³öÄ£ĞÍ
+	int RegisteredOuput(bool); //×¢²áÊä³öµÄ¿éÌåÄ£ĞÍ
+	int OutMshFile(char*,string); //Êä³öÄ£ĞÍÎÄ¼ş
+	int OutNeighborFile(char*,char*); //Êä³öÄ£ĞÍ¿éÌå»ò¶¥µãµÄÏàÁÚ¹ØÏµ Ôİ»º
+	//¹Û²âÊı¾İ
 	int InitObs(char*);
 	int OutObs(char*);
-	//æ­£æ¼”å‡½æ•°
+	//ÕıÑİº¯Êı
 	int ForwardVz(char*);
 	int ForwardVzx(char*);
 	int ForwardVzy(char*);
@@ -35,16 +36,16 @@ public:
 	int ForwardHax(char*,char*);
 	int ForwardHay(char*,char*);
 	int ForwardZa(char*,char*);
-	//gm3d_guiå‡½æ•°
+	//gm3d_guiº¯Êı
 	void get_model_list(modelistArray);
 private:
 	int obs_num_, model_num_, vert_num_;
-	//æ­£æ¼”æ•°ç»„
+	//ÕıÑİÊı×é
 	obspointArray obs_p_;
 	_2dArray input_models_;
 	_1sArray input_model_names_;
 	_1dArray forward_model_;
-	//æ¨¡å‹æ•°æ®
+	//Ä£ĞÍÊı¾İ
 	cubeArray model_cube_;
 	cpointArray model_vert_;
 	_1dArray model_block_val_;
@@ -55,7 +56,7 @@ private:
 	_int2intMap vert_out_map_;
 	_int2intMap ele_data_out_map_;
 
-	_2iArray model_vert_neighbor_; //æš‚ç¼“
-	_2iArray model_cube_neighbor_; //æš‚ç¼“
+	_2iArray model_vert_neighbor_; //Ôİ»º
+	_2iArray model_cube_neighbor_; //Ôİ»º
 };
 #endif

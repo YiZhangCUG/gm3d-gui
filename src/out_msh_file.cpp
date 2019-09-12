@@ -6,9 +6,9 @@ int GM3D::OutMshFile(char* filename,string data_name){
 	ofstream outfile;
 	if (open_outfile(outfile,filename)) return -1;
 
-	//濂藉暒 鎴戜滑杩欓噷杈撳嚭鐨勬ā鍨嬬被鍨嬪簲璇ユ槸鍧椾綋
+	//好啦 我们这里输出的模型类型应该是块体
 	outfile<<"$MeshFormat"<<endl<<"2.2 0 8"<<endl<<"$EndMeshFormat"<<endl<<"$Nodes"<<endl<< out_vert_ids_.size() <<endl;
-	//杈撳嚭椤剁偣 鏈�鍚庝竴涓笉杈撳嚭
+	//输出顶点 最后一个不输出
 	for (int i = 0; i < out_vert_ids_.size(); i++){
 		outfile << i << " " 
 		<< setprecision(16) << model_vert_[out_vert_ids_[i]].x << " " 

@@ -46,26 +46,26 @@ int GM3D::BuildRegularGrid(char* space_para){
 		while(x >= xmin && x <= xmax){
 			z = zs;
 			while(z >= zmin && z <= zmax){
-				//æ·»åŠ denMod
+				//Ìí¼ÓdenMod
 				temp_cu.cen.id = model_cube_.size();
 				temp_cu.cen.x = x; temp_cu.cen.y = y; temp_cu.cen.z = z;
-				//æ·»åŠ mshVert
+				//Ìí¼ÓmshVert
 				for (int i = 0; i < 8; i++){
-					temp_cp.id = model_vert_.size(); //æ·»åŠ mshçš„é¡¶ç‚¹ç´¢å¼•ä¸ºmshVertçš„å¤§å°
-					temp_cp.x = temp_cu.cen.x - sign[i][0]*temp_cu.dx; //å·¦ä¸‹åº•è§’
+					temp_cp.id = model_vert_.size(); //Ìí¼ÓmshµÄ¶¥µãË÷ÒıÎªmshVertµÄ´óĞ¡
+					temp_cp.x = temp_cu.cen.x - sign[i][0]*temp_cu.dx; //×óÏÂµ×½Ç
 					temp_cp.y = temp_cu.cen.y - sign[i][1]*temp_cu.dy;
 					temp_cp.z = temp_cu.cen.z - sign[i][2]*temp_cu.dz;
 					temp_id_str = cpoint_id(temp_cp);
 					imsp = map_str_point.find(temp_id_str);
-					//åˆ©ç”¨map_vertæŸ¥åˆ°å½“å‰é¡¶ç‚¹æ˜¯å¦å­˜åœ¨,è¿™é‡Œéœ€è¦æ³¨æ„ï¼Œå¦‚æœé¡¶ç‚¹å·²ç»å­˜åœ¨åˆ™åªéœ€è¦å°†é¡¶ç‚¹ç´¢å¼•ç½®ä¸ºå·²å­˜åœ¨é¡¶ç‚¹çš„ç´¢å¼•ï¼Œä¸å¢åŠ é¡¶ç‚¹è®¡æ•°
+					//ÀûÓÃmap_vert²éµ½µ±Ç°¶¥µãÊÇ·ñ´æÔÚ,ÕâÀïĞèÒª×¢Òâ£¬Èç¹û¶¥µãÒÑ¾­´æÔÚÔòÖ»ĞèÒª½«¶¥µãË÷ÒıÖÃÎªÒÑ´æÔÚ¶¥µãµÄË÷Òı£¬²»Ôö¼Ó¶¥µã¼ÆÊı
 					if(imsp!=map_str_point.end()){
 						temp_cu.ids[i] = imsp->second.id;
 					}
-					//è‹¥ä¸ºæ–°çš„é¡¶ç‚¹åˆ™å°†å…¶å¢åŠ åˆ°ä¸¤ä¸ªæ˜ å°„å’Œä¸€ä¸ªé“¾è¡¨ä¸­
+					//ÈôÎªĞÂµÄ¶¥µãÔò½«ÆäÔö¼Óµ½Á½¸öÓ³ÉäºÍÒ»¸öÁ´±íÖĞ
 					else{
-						temp_cu.ids[i] = temp_cp.id;//æ–°çš„é¡¶ç‚¹ç´¢å¼•ç­‰äºé¡¶ç‚¹é›†çš„æ•°é‡
-						model_vert_.push_back(temp_cp);//å°†æ–°äº§ç”Ÿçš„é¡¶ç‚¹ä¿å­˜åˆ°é¡¶ç‚¹é“¾è¡¨ä¸­
-						map_str_point[temp_id_str] = temp_cp;//å°†æ–°äº§ç”Ÿçš„é¡¶ç‚¹ä¿å­˜åˆ°é¡¶ç‚¹ä½ç½®æ˜ å°„ä¸­
+						temp_cu.ids[i] = temp_cp.id;//ĞÂµÄ¶¥µãË÷ÒıµÈÓÚ¶¥µã¼¯µÄÊıÁ¿
+						model_vert_.push_back(temp_cp);//½«ĞÂ²úÉúµÄ¶¥µã±£´æµ½¶¥µãÁ´±íÖĞ
+						map_str_point[temp_id_str] = temp_cp;//½«ĞÂ²úÉúµÄ¶¥µã±£´æµ½¶¥µãÎ»ÖÃÓ³ÉäÖĞ
 					}
 				}
 				model_cube_.push_back(temp_cu);
@@ -82,7 +82,7 @@ int GM3D::BuildRegularGrid(char* space_para){
 	else{
 		vert_num_ = model_vert_.size();
 		model_num_ = model_cube_.size();
-		model_block_val_.resize(model_num_,BDL_MAX); //åˆå§‹åŒ–æ¨¡å‹å—ä½“å€¼ä¸ºBDL_MAX
+		model_block_val_.resize(model_num_,BDL_MAX); //³õÊ¼»¯Ä£ĞÍ¿éÌåÖµÎªBDL_MAX
 	}
 	return 0;
 }

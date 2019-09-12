@@ -1,5 +1,5 @@
 #include "gm3d.h"
-//æˆ‘ä»¬è¯»å…¥ä¸€ä¸ªç•Œé¢æ•°æ® æ’å€¼è®¡ç®—æ¯ä¸ªå—ä½“ä¸­å¿ƒä½ç½®çš„å€¼ ç„¶åæŒ‰æƒ…å†µèµ‹å€¼
+//ÎÒÃÇ¶ÁÈëÒ»¸ö½çÃæÊı¾İ ²åÖµ¼ÆËãÃ¿¸ö¿éÌåÖĞĞÄÎ»ÖÃµÄÖµ È»ºó°´Çé¿ö¸³Öµ
 int GM3D::AddInterfaceBlock(modelist para_list){
 	int m, n, xnum, ynum;
 	double xs,xe,xmin,xmax,dx;
@@ -18,7 +18,7 @@ int GM3D::AddInterfaceBlock(modelist para_list){
 		if (open_infile(infile,filename)) return -1;
 
 		while (getline(infile,temp_str)){
-			//#rangeå¿…é¡»å‡ºç°åœ¨æ•°æ®ä¹‹å‰
+			//#range±ØĞë³öÏÖÔÚÊı¾İÖ®Ç°
 			if (*(temp_str.begin()) == '#'){
 				if (6 == sscanf(temp_str.c_str(),"# range=%lf/%lf/%lf/%lf/%lf/%lf",&xs,&dx,&xe,&ys,&dy,&ye)){
 					xmin = MIN(xs,xe); xmax = MAX(xs,xe);
@@ -75,7 +75,7 @@ int GM3D::AddInterfaceBlock(modelist para_list){
 
 				if (model_cube_[i].cen.z >= temp_topo.z){
 					if (model_block_val_[i] == BDL_MAX)
-						model_block_val_[i] = para_list.mod_value; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+						model_block_val_[i] = para_list.mod_value; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					else
 						model_block_val_[i] += para_list.mod_value;
 					model_added = true;
@@ -92,7 +92,7 @@ int GM3D::AddInterfaceBlock(modelist para_list){
 
 				if (model_cube_[i].cen.z <= temp_topo.z){
 					if (model_block_val_[i] == BDL_MAX)
-						model_block_val_[i] = para_list.mod_value; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+						model_block_val_[i] = para_list.mod_value; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					else
 						model_block_val_[i] += para_list.mod_value;
 					model_added = true;

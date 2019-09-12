@@ -19,7 +19,7 @@ int GM3D::AddTiltedBlock(modelist para_list){
 
 		if (!strcmp(para_list.val_type,"replace")){
 			for (int i = 0; i < model_num_; i++){
-				//è®¡ç®—å½“å‰å±‚çš„xä¸ŽyèŒƒå›´
+				//¼ÆËãµ±Ç°²ãµÄxÓëy·¶Î§
 				layer_xmin = (model_cube_[i].cen.z - zmin)*(xmin_2 - xmin_1)/(zmax - zmin) + xmin_1;
 				layer_xmax = (model_cube_[i].cen.z - zmin)*(xmax_2 - xmax_1)/(zmax - zmin) + xmax_1;
 				layer_ymin = (model_cube_[i].cen.z - zmin)*(ymin_2 - ymin_1)/(zmax - zmin) + ymin_1;
@@ -28,14 +28,14 @@ int GM3D::AddTiltedBlock(modelist para_list){
 				if (model_cube_[i].cen.x >= layer_xmin && model_cube_[i].cen.x <= layer_xmax &&
 					model_cube_[i].cen.y >= layer_ymin && model_cube_[i].cen.y <= layer_ymax &&
 					model_cube_[i].cen.z >= zmin && model_cube_[i].cen.z <= zmax){
-					model_block_val_[i] = para_list.mod_value; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+					model_block_val_[i] = para_list.mod_value; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					model_added = true;
 				}
 			}
 		}
 		else if (!strcmp(para_list.val_type,"add")){
 			for (int i = 0; i < model_num_; i++){
-				//è®¡ç®—å½“å‰å±‚çš„xä¸ŽyèŒƒå›´
+				//¼ÆËãµ±Ç°²ãµÄxÓëy·¶Î§
 				layer_xmin = (model_cube_[i].cen.z - zmin)*(xmin_2 - xmin_1)/(zmax - zmin) + xmin_1;
 				layer_xmax = (model_cube_[i].cen.z - zmin)*(xmax_2 - xmax_1)/(zmax - zmin) + xmax_1;
 				layer_ymin = (model_cube_[i].cen.z - zmin)*(ymin_2 - ymin_1)/(zmax - zmin) + ymin_1;
@@ -45,7 +45,7 @@ int GM3D::AddTiltedBlock(modelist para_list){
 					model_cube_[i].cen.y >= layer_ymin && model_cube_[i].cen.y <= layer_ymax &&
 					model_cube_[i].cen.z >= zmin && model_cube_[i].cen.z <= zmax){
 					if (model_block_val_[i] == BDL_MAX)
-						model_block_val_[i] = para_list.mod_value; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+						model_block_val_[i] = para_list.mod_value; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					else
 						model_block_val_[i] += para_list.mod_value;
 					model_added = true;
@@ -54,7 +54,7 @@ int GM3D::AddTiltedBlock(modelist para_list){
 		}
 		else if (!strcmp(para_list.val_type,"erase")){
 			for (int i = 0; i < model_num_; i++){
-				//è®¡ç®—å½“å‰å±‚çš„xä¸ŽyèŒƒå›´
+				//¼ÆËãµ±Ç°²ãµÄxÓëy·¶Î§
 				layer_xmin = (model_cube_[i].cen.z - zmin)*(xmin_2 - xmin_1)/(zmax - zmin) + xmin_1;
 				layer_xmax = (model_cube_[i].cen.z - zmin)*(xmax_2 - xmax_1)/(zmax - zmin) + xmax_1;
 				layer_ymin = (model_cube_[i].cen.z - zmin)*(ymin_2 - ymin_1)/(zmax - zmin) + ymin_1;
@@ -63,7 +63,7 @@ int GM3D::AddTiltedBlock(modelist para_list){
 				if (model_cube_[i].cen.x >= layer_xmin && model_cube_[i].cen.x <= layer_xmax &&
 					model_cube_[i].cen.y >= layer_ymin && model_cube_[i].cen.y <= layer_ymax &&
 					model_cube_[i].cen.z >= zmin && model_cube_[i].cen.z <= zmax){
-					model_block_val_[i] = BDL_MAX; //æ³¨æ„é‡å¤èµ‹å€¼çš„å—ä½“ä¼šè¦†ç›–
+					model_block_val_[i] = BDL_MAX; //×¢ÒâÖØ¸´¸³ÖµµÄ¿éÌå»á¸²¸Ç
 					model_added = true;
 				}
 			}
