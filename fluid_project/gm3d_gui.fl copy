@@ -1,0 +1,267 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0305
+header_name {.h}
+code_name {.cxx}
+Function {cb_mesh_para_input(Fl_Input*, void*)} {open
+} {}
+
+Function {cb_mesh_file_btn(Fl_Widget*, void*)} {open
+} {}
+
+Function {cb_add_mod_btn(Fl_Widget*, void*)} {open
+} {}
+
+Function {cb_mod_para_file_btn(Fl_Widget*, void*)} {open
+} {}
+
+Function {cb_del_mod_btn(Fl_Widget*, void*)} {open
+} {}
+
+Function {cb_mod_para_brw(Fl_Browser*, void*)} {open
+} {}
+
+Function {cb_mod_ele_input(Fl_Input*, void*)} {open
+} {}
+
+Function {cb_rm_emp_bok_check(Fl_Check_Button*, void*)} {open
+} {}
+
+Function {cb_mod_file_out_btn(Fl_Widget*, void*)} {open
+} {}
+
+Function {cb_build_mod_btn(Fl_Widget*, void*)} {open
+} {}
+
+Function {cb_mod_file_input(Fl_Input*, void*)} {open
+} {}
+
+Function {cb_mod_file_btn(Fl_Widget*, void*)} {open
+} {}
+
+Function {cb_obs_file_input(Fl_Input*, void*)} {open
+} {}
+
+Function {cb_obs_file_btn(Fl_Widget*, void*)} {open
+} {}
+
+Function {cb_res_file_input(Fl_Input*, void*)} {open
+} {}
+
+Function {cb_res_file_btn(Fl_Widget*, void*)} {open
+} {}
+
+Function {cb_nosie_check(Fl_Check_Button*, void*)} {open
+} {}
+
+Function {cb_noise_para_input(Fl_Input*, void*)} {open
+} {}
+
+Function {cb_mag_data_check(Fl_Check_Button*, void*)} {open
+} {}
+
+Function {cb_mag_para_input(Fl_Input*, void*)} {open
+} {}
+
+Function {} {open
+} {
+  Fl_Window main_window {
+    label gm3d open
+    xywh {678 185 500 600} type Double visible
+  } {
+    Fl_Tabs main_tabs {open
+      xywh {10 10 480 580}
+    } {
+      Fl_Group model_tab {
+        label {Build Model} open
+        xywh {10 40 480 550} hide
+      } {
+        Fl_Input mesh_para_input {
+          label {Input Mesh Parameters :}
+          callback cb_mesh_para_input
+          xywh {40 70 300 28} align 5
+        }
+        Fl_Button mesh_file_btn {
+          label {Mesh File}
+          callback cb_mesh_file_btn
+          xywh {360 70 100 28}
+        }
+        Fl_Button mod_para_file_btn {
+          label {Add Model From File}
+          callback cb_mod_para_file_btn
+          xywh {170 160 160 28}
+        }
+        Fl_Input mod_ele_input_build {
+          label {Input Model Element Data Name:}
+          callback cb_mod_ele_input
+          xywh {40 445 215 28} align 5
+        }
+        Fl_Button build_mod_btn {
+          label {Build Model !}
+          callback cb_build_mod_btn
+          xywh {40 545 420 28}
+        }
+        Fl_Output mesh_para_output {
+          label {Mesh Parameters :}
+          xywh {40 120 300 28} box NO_BOX align 5
+        }
+        Fl_Button add_mod_btn {
+          label {Add Model}
+          callback cb_add_mod_btn
+          xywh {40 160 100 28}
+        }
+        Fl_Button del_mod_btn {
+          label {Delete Model}
+          callback cb_del_mod_btn
+          xywh {360 160 100 28} deactivate
+        }
+        Fl_Check_Button rm_emp_bok_check {
+          label {Remove Empty Blocks}
+          callback cb_rm_emp_bok_check
+          xywh {280 447 180 28} down_box DOWN_BOX
+        }
+        Fl_Browser mod_para_brw {
+          callback cb_mod_para_brw
+          xywh {40 205 420 210}
+        }
+        Fl_Button mod_file_out_btn {
+          label {Model File}
+          callback cb_mod_file_out_btn
+          xywh {360 500 100 28}
+        }
+        Fl_Output mod_out_file_output {
+          label {Output File Name :}
+          xywh {40 500 300 28} box NO_BOX align 5
+        }
+      }
+      Fl_Group forward_tab {
+        label {Forward Modeling} open
+        xywh {10 40 480 550}
+      } {
+        Fl_Group grav_group {
+          label {Forward Gravitational Data :} open
+          xywh {40 340 190 58} align 5
+        } {
+          Fl_Check_Button Vz_check {
+            label Vz selected
+            xywh {40 340 50 28} down_box DOWN_BOX
+          }
+          Fl_Check_Button Vzx_check {
+            label Vzx
+            xywh {105 340 50 28} down_box DOWN_BOX
+          }
+          Fl_Check_Button Vzy_check {
+            label Vzy
+            xywh {170 340 50 28} down_box DOWN_BOX
+          }
+          Fl_Check_Button Vzz_check {
+            label Vzz
+            xywh {40 370 50 28} down_box DOWN_BOX
+          }
+        }
+        Fl_Button mod_file_btn {
+          label {Model File}
+          callback cb_mod_file_btn
+          xywh {360 70 100 28}
+        }
+        Fl_Button obs_file_btn {
+          label {Observe File}
+          callback cb_obs_file_btn
+          xywh {360 130 100 28}
+        }
+        Fl_Input mod_file_input {
+          label {Input Model FIle :}
+          callback cb_mod_file_input
+          xywh {40 70 300 28} align 5
+        }
+        Fl_Output mod_file_output {
+          label {Chosen Model File :}
+          xywh {40 240 200 28} box NO_BOX align 5
+        }
+        Fl_Input obs_file_input {
+          label {Input Observe  FIle :}
+          callback cb_obs_file_input
+          xywh {40 130 300 28} align 5
+        }
+        Fl_Output obs_file_output {
+          label {Chosen Observe File :}
+          xywh {260 240 200 28} box NO_BOX align 5
+        }
+        Fl_Input mod_ele_input {
+          label {Model Element Data Name :}
+          callback cb_mod_ele_input
+          xywh {260 315 200 28} align 5
+        }
+        Fl_Group mag_group {open
+          xywh {40 440 420 90}
+        } {
+          Fl_Check_Button DeltaT_check {
+            label DeltaT
+            xywh {40 475 65 25} down_box DOWN_BOX deactivate
+          }
+          Fl_Check_Button DeltaTx_check {
+            label DeltaTx
+            xywh {120 475 70 25} down_box DOWN_BOX deactivate
+          }
+          Fl_Check_Button DeltaTy_check {
+            label DeltaTy
+            xywh {200 475 70 25} down_box DOWN_BOX deactivate
+          }
+          Fl_Check_Button DeltaTz_check {
+            label DeltaTz
+            xywh {280 475 70 25} down_box DOWN_BOX deactivate
+          }
+          Fl_Check_Button Hax_check {
+            label Hax
+            xywh {40 505 65 25} down_box DOWN_BOX deactivate
+          }
+          Fl_Check_Button Hay_check {
+            label Hay
+            xywh {120 505 65 25} down_box DOWN_BOX deactivate
+          }
+          Fl_Check_Button Za_check {
+            label Za
+            xywh {200 505 65 25} down_box DOWN_BOX deactivate
+          }
+          Fl_Input mag_para_input {
+            label {Magnetization Parameters :  }
+            callback cb_mag_para_input
+            tooltip {<I0>/<D0>/<I>/<D>} xywh {220 440 240 28} deactivate
+          }
+        }
+        Fl_Check_Button mag_data_check {
+          label {Forward Magnetic Data}
+          callback cb_mag_data_check
+          xywh {40 405 170 30} down_box DOWN_BOX
+        }
+        Fl_Button cal_btn {
+          label {Calculate !}
+          callback cb_cal_btn
+          xywh {40 545 420 28}
+        }
+        Fl_Input noise_para_input {
+          callback cb_noise_para_input
+          tooltip {<noise-mean>/<nosie-deviation>} xywh {260 370 200 28} align 5 deactivate
+        }
+        Fl_Check_Button noise_check {
+          label {Input Noise Parameters :}
+          callback cb_noise_check
+          xywh {260 345 180 30} down_box DOWN_BOX
+        }
+        Fl_Input res_file_input {
+          label {Input Prefix of Output FIle :}
+          callback cb_res_file_input
+          xywh {40 190 300 28} align 5
+        }
+        Fl_Button res_file_btn {
+          label {Result File}
+          callback cb_res_file_btn
+          xywh {360 190 100 28}
+        }
+        Fl_Output res_out_file_output {
+          label {Prefix of Output File :}
+          xywh {40 290 200 28} box NO_BOX align 5
+        }
+      }
+    }
+  }
+}
