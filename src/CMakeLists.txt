@@ -9,10 +9,12 @@ if (OPENMP_FOUND)
 	set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 endif()
 # 生成windows和mac的应用程序文件
-add_executable(gm3d_gui WIN32 MACOSX_BUNDLE ${DIR_SRC})
 
 include_directories(/usr/local/include)
 
-find_library(FLTK_LIBRARY fltk HINTS /usr/local/lib)
+#add_executable(gm3d_gui WIN32 MACOSX_BUNDLE ${DIR_SRC})
+add_executable(gm3d_gui ${DIR_SRC})
 
-target_link_libraries(gm3d_gui PUBLIC ${FLTK_LIBRARY})
+find_library(FLTK_LIBRARY libfltk.a /usr/local/Cellar/fltk/1.3.5/lib)
+
+target_link_libraries(gm3d_gui ${FLTK_LIBRARY})
