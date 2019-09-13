@@ -16,7 +16,7 @@ public:
 	int AddInterfaceBlock(modelist); //添加密度界面
 	//模型操作
 	int ReadModel(char*,char*);
-	int ReadMeshtoolModel(char*);
+	int ReadMeshtoolModel(char*); //读入meshtool 3D格式文件
 	//输出模型
 	int RegisteredOuput(bool); //注册输出的块体模型
 	int OutMshFile(char*,string); //输出模型文件
