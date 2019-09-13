@@ -10,7 +10,7 @@ int GM3D::ReadModel_mst(char* filename){
 	stringstream temp_ss;
 
 	ifstream mstin;
-	if (open_infile(mstin,filename)) return -1; //检查并打开模型文件
+	if (open_infile(mstin,filename)) return -1; //录矛虏茅虏垄麓貌驴陋脛拢脨脥脦脛录镁
 	double ynum, xnum, znum;
     double ystart, xstart, zstart;
     double ylength, xlength, zlength;
@@ -23,7 +23,7 @@ int GM3D::ReadModel_mst(char* filename){
 
     model_num_ = ynum*xnum*znum;
     model_cube_.resize(model_num_);
-	//初始化数组
+	//鲁玫脢录禄炉脢媒脳茅
 	forward_model_.resize(model_num_,0.0);
 
     double f_mdl_tmp;
