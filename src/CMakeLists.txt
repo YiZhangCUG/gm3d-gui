@@ -12,8 +12,20 @@ endif()
 
 include_directories(/usr/local/include)
 
+# NOTE: Don't include the path in MACOSX_BUNDLE_ICON_FILE -- this is
+# the property added to Info.plist
+#     <key>CFBundleIconFile</key>
+#     <string>logo</string>
+set(MACOSX_BUNDLE_ICON_FILE Logo_ZY)
+
+# And this part tells CMake where to find and install the file itself
+set(myApp_ICON ${PROJECT_SOURCE_DIR}/assert/logo/Logo_ZY.icns)
+# set_source_files_properties would create Resources folder to store icns
+# The folder is at same path where Info.plist located
+set_source_files_properties(${myApp_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+
 #add_executable(gm3d_gui WIN32 MACOSX_BUNDLE ${DIR_SRC})
-add_executable(gm3d_gui ${DIR_SRC})
+add_executable(gm3d_gui MACOSX_BUNDLE ${DIR_SRC} ${myApp_ICON})
 
 find_library(FLTK_LIBRARY libfltk.a /usr/local/Cellar/fltk/1.3.5/lib)
 
