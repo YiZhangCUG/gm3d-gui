@@ -10,18 +10,23 @@ int main(int argc, char **argv) {
         { mesh_para_input = new Fl_Input(40, 70, 300, 28, "Input Mesh Parameters :");
           mesh_para_input->callback((Fl_Callback*)cb_mesh_para_input);
           mesh_para_input->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+          mesh_para_input->tooltip("mesh parameters:\n<xmin>/<dx>/<xmax>/<ymin>/<dy>/<ymax>/<zmin>/<dz>/<zmax>");
         } // Fl_Input* mesh_para_input
         { mesh_file_btn = new Fl_Button(360, 70, 100, 28, "Mesh File");
           mesh_file_btn->callback((Fl_Callback*)cb_mesh_file_btn);
+          mesh_file_btn->tooltip("read mesh parameters from an input file.");
         } // Fl_Button* mesh_file_btn
         { mod_para_file_btn = new Fl_Button(170, 160, 160, 28, "Add Model From File");
           mod_para_file_btn->callback((Fl_Callback*)cb_mod_para_file_btn);
+          mod_para_file_btn->tooltip("read model parameters from an input file.");
         } // Fl_Button* mod_para_file_btn
         { mod_ele_input_build = new Fl_Input(40, 445, 215, 28, "Input Model Element Data Name:");
           mod_ele_input_build->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+          mod_ele_input_build->tooltip("a string. e.g. my_model");
         } // Fl_Input* mod_ele_input_build
         { build_mod_btn = new Fl_Button(40, 545, 420, 28, "Build Model !");
           build_mod_btn->callback((Fl_Callback*)cb_build_mod_btn);
+          build_mod_btn->tooltip("callback a gm3d function to build the model.");
         } // Fl_Button* build_mod_btn
         { mesh_para_output = new Fl_Output(40, 120, 300, 28, "Mesh Parameters :");
           mesh_para_output->value("Unset");
@@ -31,14 +36,17 @@ int main(int argc, char **argv) {
         } // Fl_Output* mesh_para_output
         { add_mod_btn = new Fl_Button(40, 160, 100, 28, "Add Model");
           add_mod_btn->callback((Fl_Callback*)cb_add_mod_btn);
+          add_mod_btn->tooltip("add one entry of model parameter from a gui interface.");
         } // Fl_Button* add_mod_btn
         { del_mod_btn = new Fl_Button(360, 160, 100, 28, "Delete Model");
           del_mod_btn->callback((Fl_Callback*)cb_del_mod_btn);
+          del_mod_btn->tooltip("delete the selected the entry of model parameter.");
           del_mod_btn->deactivate();
         } // Fl_Button* del_mod_btn
         { rm_emp_bok_check = new Fl_Check_Button(280, 447, 180, 28, "Remove Empty Blocks");
           rm_emp_bok_check->down_box(FL_DOWN_BOX);
           rm_emp_bok_check->callback((Fl_Callback*)cb_rm_emp_bok_check);
+          rm_emp_bok_check->tooltip("suppress the output of blocks with zero values.");
         } // Fl_Check_Button* rm_emp_bok_check
         { mod_para_brw = new Fl_Browser(40, 205, 420, 210);
           mod_para_brw->callback((Fl_Callback*)cb_mod_para_brw);
@@ -46,6 +54,7 @@ int main(int argc, char **argv) {
         } // Fl_Browser* mod_para_brw
         { mod_file_out_btn = new Fl_Button(360, 500, 100, 28, "Model File");
           mod_file_out_btn->callback((Fl_Callback*)cb_mod_file_out_btn);
+          mod_file_out_btn->tooltip("create an filename for outputting.");
         } // Fl_Button* mod_file_out_btn
         { mod_out_file_output = new Fl_Output(40, 500, 300, 28, "Output File Name :");
           mod_out_file_output->box(FL_FLAT_BOX);

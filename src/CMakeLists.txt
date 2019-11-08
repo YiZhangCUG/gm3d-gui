@@ -25,8 +25,8 @@ set(myApp_ICON ${PROJECT_SOURCE_DIR}/assert/logo/Logo_ZY.icns)
 set_source_files_properties(${myApp_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
 #add_executable(gm3d_gui WIN32 MACOSX_BUNDLE ${DIR_SRC})
-add_executable(gm3d_gui MACOSX_BUNDLE ${DIR_SRC} ${myApp_ICON})
+add_executable(gm3d MACOSX_BUNDLE ${DIR_SRC} ${myApp_ICON})
 
 find_library(FLTK_LIBRARY libfltk.a /usr/local/Cellar/fltk/1.3.5/lib)
 
-target_link_libraries(gm3d_gui ${FLTK_LIBRARY})
+target_link_libraries(gm3d ${FLTK_LIBRARY})
