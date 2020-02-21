@@ -3,6 +3,8 @@
 #include "gm3d_gui.h"
 
 int main(int argc, char **argv) {
+  // use high resolution mode for "retina display"
+  // Fl::use_high_res_GL(1);
   { main_window = new Fl_Double_Window(500, 600, "gm3d");
     { main_tabs = new Fl_Tabs(10, 10, 480, 580);
       { model_tab = new Fl_Group(10, 40, 480, 550, "Build Model");
@@ -181,6 +183,7 @@ int main(int argc, char **argv) {
     } // Fl_Tabs* main_tabs
     main_window->end();
   } // Fl_Double_Window* main_window
+  // show software interface
   main_window->show(argc, argv);
   return Fl::run();
 }
