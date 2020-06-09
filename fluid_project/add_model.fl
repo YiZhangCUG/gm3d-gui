@@ -5,11 +5,11 @@ code_name {.cxx}
 Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
 } {
   Fl_Window edit_mod_win {
-    label {Model editor (gm3d)} open selected
-    xywh {889 252 314 320} type Double visible
+    label {gm3d editor} open selected
+    xywh {645 271 314 320} type Double visible
   } {
     Fl_Group mod_type_group {
-      label {Model Type :} open
+      label {Entity Type :} open
       xywh {20 25 250 53} align 5
     } {
       Fl_Round_Button reg_bok_rbtn {
@@ -21,7 +21,7 @@ Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
         xywh {160 25 100 28} down_box ROUND_DOWN_BOX
       }
       Fl_Round_Button sph_rbtn {
-        label Ellipsoid
+        label Sphere
         xywh {20 50 70 28} down_box ROUND_DOWN_BOX
       }
       Fl_Round_Button int_face_rbtn {
@@ -30,7 +30,7 @@ Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
       }
     }
     Fl_Group val_type_group {
-      label {Value Type :} open
+      label {Value Type:} open
       xywh {20 100 250 30} align 5
     } {
       Fl_Round_Button app_val_rbtn {
@@ -47,24 +47,24 @@ Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
       }
     }
     Fl_Group agn_part_group {
-      label {Assign Part :} open
+      label {Solid Side:} open
       xywh {20 150 160 28} align 5
     } {
       Fl_Round_Button top_val_btn {
-        label Top
-        xywh {20 150 50 28} down_box ROUND_DOWN_BOX deactivate
+        label Above
+        xywh {20 150 70 28} down_box ROUND_DOWN_BOX deactivate
       }
       Fl_Round_Button bot_val_btn {
-        label Bottom
-        xywh {90 150 70 28} down_box ROUND_DOWN_BOX deactivate
+        label Below
+        xywh {95 150 70 28} down_box ROUND_DOWN_BOX deactivate
       }
     }
     Fl_Input sig_mod_para_input {
-      label {Model Parameter :}
+      label {Geometric Parameters:}
       xywh {20 200 275 28} align 5
     }
     Fl_Input mod_val_input {
-      label {Model Value :}
+      label {Physical Value:}
       xywh {180 150 115 28} align 5
     }
     Fl_Button sig_add_btn {
@@ -80,7 +80,7 @@ Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
       xywh {215 240 80 28} deactivate
     }
     Fl_Return_Button can_add_btn {
-      label Cancel
+      label Quit
       xywh {215 280 80 28}
     }
   }
