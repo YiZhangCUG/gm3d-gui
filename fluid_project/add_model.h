@@ -4,7 +4,7 @@
 #define add_model_h
 #include <FL/Fl.H>
 #include <FL/Fl_Double_Window.H>
-extern Fl_Double_Window *add_mod_win;
+extern Fl_Double_Window *edit_mod_win;
 #include <FL/Fl_Group.H>
 extern Fl_Group *mod_type_group;
 #include <FL/Fl_Round_Button.H>
@@ -21,10 +21,12 @@ extern Fl_Round_Button *top_val_btn;
 extern Fl_Round_Button *bot_val_btn;
 #include <FL/Fl_Input.H>
 extern Fl_Input *sig_mod_para_input;
-#include <FL/Fl_Return_Button.H>
-extern Fl_Return_Button *can_add_btn;
+extern Fl_Input *mod_val_input;
 #include <FL/Fl_Button.H>
 extern Fl_Button *sig_add_btn;
-extern Fl_Input *mod_val_input;
+extern Fl_Button *sig_replace_btn;
+extern Fl_Button *sig_delete_btn;
+#include <FL/Fl_Return_Button.H>
+extern Fl_Return_Button *can_add_btn;
 void cb_add_mod_btn(Fl_Button*, void*);
 #endif

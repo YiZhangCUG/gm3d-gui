@@ -10,7 +10,8 @@ Fl_Button *mod_para_file_btn=(Fl_Button *)0;
 Fl_Input *mod_ele_input_build=(Fl_Input *)0;
 Fl_Button *build_mod_btn=(Fl_Button *)0;
 Fl_Output *mesh_para_output=(Fl_Output *)0;
-Fl_Button *edit_mod_btn=(Fl_Button *)0;
+Fl_Button *add_mod_btn=(Fl_Button *)0;
+Fl_Button *del_mod_btn=(Fl_Button *)0;
 Fl_Check_Button *rm_emp_bok_check=(Fl_Check_Button *)0;
 Fl_Browser *mod_para_brw=(Fl_Browser *)0;
 Fl_Button *mod_file_out_btn=(Fl_Button *)0;
@@ -48,19 +49,10 @@ Fl_Output *res_file_output=(Fl_Output *)0;
 char mesh_filename[1024];
 char out_msh_filename[1024];
 
-// 声明三个字符串用于保存新建的模型类型和赋值类型
-char add_mod_type[1024];
-char add_val_type[1024];
-char agn_val_type[1024];
-
-// 声明一个字符串用于保存新建的模型参数并添加至列表中
-// 模型参数的排列为<模型类型> <赋值类型> <物理参数字符串> <几何参数字符串>
-char add_mod_para[1024];
-
 void cb_mesh_para_input(Fl_Input*, void*){
-  strcpy(mesh_filename,mesh_para_input->value());
-  mesh_para_output->value(mesh_para_input->value());
-  return;
+	strcpy(mesh_filename,mesh_para_input->value());
+	mesh_para_output->value(mesh_para_input->value());
+	return;
 }
 
 void cb_mesh_file_btn(Fl_Widget*, void*){
@@ -125,132 +117,17 @@ void cb_mod_para_file_btn(Fl_Widget*, void*){
   return;
 }
 
+void cb_del_mod_btn(Fl_Widget*, void*){
+  int index = mod_para_brw->value();
+  mod_para_brw->remove(index);
+  del_mod_btn->deactivate();
+}
+
 void cb_mod_para_brw(Fl_Browser*, void*){
-  std::stringstream temp_ss;
-  modelist temp_list;
-  int index;
   for ( int t=1; t<=mod_para_brw->size(); t++ ) {
     if ( mod_para_brw->selected(t) ) {
       //printf("%d) '%s'\n", t, mod_para_brw->text(t));
-      index = mod_para_brw->value();
-      temp_ss.clear(); temp_ss.str("");
-      temp_ss << mod_para_brw->text(index);
-      temp_ss >> temp_list.mod_type >> temp_list.val_type 
-        >> temp_list.mod_value >> temp_list.mod_para;
-
-      // 重置模型类型按钮
-      sscanf(temp_list.mod_type, "%s", add_mod_type);
-      if (!strcmp(add_mod_type, "regular_block"))
-      {
-        reg_bok_rbtn->value(1);
-        til_bok_rbtn->value(0);
-        sph_rbtn->value(0);
-        int_face_rbtn->value(0);
-
-        top_val_btn->value(0);
-        bot_val_btn->value(0);
-        agn_part_group->deactivate();
-      }
-      else if (!strcmp(add_mod_type, "tilted_block"))
-      {
-        reg_bok_rbtn->value(0);
-        til_bok_rbtn->value(1);
-        sph_rbtn->value(0);
-        int_face_rbtn->value(0);
-
-        top_val_btn->value(0);
-        bot_val_btn->value(0);
-        agn_part_group->deactivate();
-      }
-      else if (!strcmp(add_mod_type, "sphere"))
-      {
-        reg_bok_rbtn->value(0);
-        til_bok_rbtn->value(0);
-        sph_rbtn->value(1);
-        int_face_rbtn->value(0);
-
-        top_val_btn->value(0);
-        bot_val_btn->value(0);
-        agn_part_group->deactivate();
-      }
-      else if (!strcmp(add_mod_type, "interface"))
-      {
-        reg_bok_rbtn->value(0);
-        til_bok_rbtn->value(0);
-        sph_rbtn->value(0);
-        int_face_rbtn->value(1);
-
-        top_val_btn->value(0);
-        bot_val_btn->value(0);
-        agn_part_group->activate();
-      }
-
-      if (2 == sscanf(temp_list.val_type, "%[^/]/%s", add_val_type,
-          agn_val_type))
-      {
-          // 重置模型数据类型按钮
-         if (!strcmp(add_val_type, "add"))
-         {
-           app_val_rbtn->value(1);
-           rep_val_rbtn->value(0);
-           era_val_rbtn->value(0);
-         }
-         else if (!strcmp(add_val_type, "replace"))
-         {
-           app_val_rbtn->value(0);
-           rep_val_rbtn->value(1);
-           era_val_rbtn->value(0);
-         }
-         else if (!strcmp(add_val_type, "erase"))
-         {
-           app_val_rbtn->value(0);
-           rep_val_rbtn->value(0);
-           era_val_rbtn->value(1);
-         }
-
-         if (!strcmp(agn_val_type, "top"))
-         {
-            top_val_btn->value(1);
-            bot_val_btn->value(0);
-         }
-         else if (!strcmp(agn_val_type, "bot"))
-         {
-            top_val_btn->value(0);
-            bot_val_btn->value(1);
-         }
-      }
-      else
-      {
-         sscanf(temp_list.val_type, "%s", add_val_type);
-         // 重置模型数据类型按钮
-         if (!strcmp(add_val_type, "add"))
-         {
-           app_val_rbtn->value(1);
-           rep_val_rbtn->value(0);
-           era_val_rbtn->value(0);
-         }
-         else if (!strcmp(add_val_type, "replace"))
-         {
-           app_val_rbtn->value(0);
-           rep_val_rbtn->value(1);
-           era_val_rbtn->value(0);
-         }
-         else if (!strcmp(add_val_type, "erase"))
-         {
-           app_val_rbtn->value(0);
-           rep_val_rbtn->value(0);
-           era_val_rbtn->value(1);
-         }
-      }
-
-      char tmp_char[1024];
-      temp_ss.clear(); temp_ss.str("");
-      temp_ss << temp_list.mod_value;
-      temp_ss >> tmp_char;
-      mod_val_input->value(tmp_char);
-      sig_mod_para_input->value(temp_list.mod_para);
-      sig_delete_btn->activate();
-      sig_replace_btn->activate();
+      del_mod_btn->activate();
     }
   }
   return;
@@ -353,9 +230,9 @@ char in_obs_filename[1024];
 char out_res_filename[1024];
 
 void cb_mod_file_input(Fl_Input*, void*){
-  strcpy(in_msh_filename,mod_file_input->value());
-  mod_file_output->value(mod_file_input->value());
-  return;
+	strcpy(in_msh_filename,mod_file_input->value());
+	mod_file_output->value(mod_file_input->value());
+	return;
 }
 
 void cb_mod_file_btn(Fl_Widget*, void*){
@@ -388,9 +265,9 @@ void cb_mod_file_btn(Fl_Widget*, void*){
 }
 
 void cb_obs_file_input(Fl_Input*, void*){
-  strcpy(in_obs_filename,obs_file_input->value());
-  obs_file_output->value(obs_file_input->value());
-  return;
+	strcpy(in_obs_filename,obs_file_input->value());
+	obs_file_output->value(obs_file_input->value());
+	return;
 }
 
 void cb_obs_file_btn(Fl_Widget*, void*){
@@ -423,9 +300,9 @@ void cb_obs_file_btn(Fl_Widget*, void*){
 }
 
 void cb_res_file_input(Fl_Input*, void*){
-  strcpy(out_res_filename,res_file_input->value());
-  res_file_output->value(res_file_input->value());
-  return;
+	strcpy(out_res_filename,res_file_input->value());
+	res_file_output->value(res_file_input->value());
+	return;
 }
 
 void cb_res_file_btn(Fl_Widget*, void*){
@@ -659,224 +536,4 @@ void cb_cal_btn(Fl_Button*, void*){
 
   fl_message("Forward calculation completed !");
   return;
-}
-
-Fl_Double_Window *edit_mod_win=(Fl_Double_Window *)0;
-Fl_Group *mod_type_group=(Fl_Group *)0;
-Fl_Radio_Round_Button *reg_bok_rbtn=(Fl_Radio_Round_Button *)0;
-Fl_Radio_Round_Button *til_bok_rbtn=(Fl_Radio_Round_Button *)0;
-Fl_Radio_Round_Button *sph_rbtn=(Fl_Radio_Round_Button *)0;
-Fl_Radio_Round_Button *int_face_rbtn=(Fl_Radio_Round_Button *)0;
-Fl_Group *val_type_group=(Fl_Group *)0;
-Fl_Radio_Round_Button *app_val_rbtn=(Fl_Radio_Round_Button *)0;
-Fl_Radio_Round_Button *rep_val_rbtn=(Fl_Radio_Round_Button *)0;
-Fl_Radio_Round_Button *era_val_rbtn=(Fl_Radio_Round_Button *)0;
-Fl_Group *agn_part_group=(Fl_Group *)0;
-Fl_Radio_Round_Button *top_val_btn=(Fl_Radio_Round_Button *)0;
-Fl_Radio_Round_Button *bot_val_btn=(Fl_Radio_Round_Button *)0;
-Fl_Input *sig_mod_para_input=(Fl_Input *)0;
-Fl_Input *mod_val_input=(Fl_Input *)0;
-Fl_Button *sig_add_btn=(Fl_Button *)0;
-Fl_Button *sig_replace_btn=(Fl_Button *)0;
-Fl_Button *sig_delete_btn=(Fl_Button *)0;
-Fl_Return_Button *can_add_btn=(Fl_Return_Button *)0;
-
-void cb_reg_bok_rbtn(Fl_Button*, void*){
-  strcpy(add_mod_type,"regular_block");
-  top_val_btn->value(0);
-  bot_val_btn->value(0);
-  agn_part_group->deactivate();
-  //printf("%s\n", "Regular block button selected!");
-  return;
-}
-
-void cb_til_bok_rbtn(Fl_Button*, void*){
-  strcpy(add_mod_type,"tilted_block");
-  top_val_btn->value(0);
-  bot_val_btn->value(0);
-  agn_part_group->deactivate();
-  //printf("%s\n", "Tilted block button selected!");
-  return;
-}
-
-void cb_sph_rbtn(Fl_Button*, void*){
-  strcpy(add_mod_type,"sphere");
-  top_val_btn->value(0);
-  bot_val_btn->value(0);
-  agn_part_group->deactivate();
-  //printf("%s\n", "Sphere button selected!");
-  return;
-}
-
-void cb_int_face_rbtn(Fl_Button*, void*){
-  strcpy(add_mod_type,"interface");
-  agn_part_group->activate();
-  //printf("%s\n", "Interface button selected!");
-  return;
-}
-
-void cb_app_val_rbtn(Fl_Button*, void*){
-  strcpy(add_val_type,"add");
-  //printf("%s\n", "append button selected!");
-  return;
-}
-
-void cb_rep_val_rbtn(Fl_Button*, void*){
-  strcpy(add_val_type,"replace");
-  //printf("%s\n", "replace button selected!");
-  return;
-}
-
-void cb_era_val_rbtn(Fl_Button*, void*){
-  strcpy(add_val_type,"erase");
-  //printf("%s\n", "Erase button selected!");
-  return;
-}
-
-void cb_top_val_rbtn(Fl_Button*, void*){
-  strcpy(agn_val_type,"top");
-  //printf("%s\n", "Erase button selected!");
-  return;
-}
-
-void cb_bot_val_rbtn(Fl_Button*, void*){
-  strcpy(agn_val_type,"bot");
-  //printf("%s\n", "Erase button selected!");
-  return;
-}
-
-void cb_sig_add_btn(Fl_Widget*, void*){
-  strcpy(add_mod_para,add_mod_type);
-  strcat(add_mod_para," ");
-  strcat(add_mod_para,add_val_type);
-  if (!strcmp(add_mod_type,"interface"))
-  {
-    strcat(add_mod_para,"/");
-    strcat(add_mod_para,agn_val_type);
-  }
-  strcat(add_mod_para," ");
-  strcat(add_mod_para,mod_val_input->value());
-  strcat(add_mod_para," ");
-  strcat(add_mod_para,sig_mod_para_input->value());
-  mod_para_brw->add(add_mod_para);
-  return;
-}
-
-void cb_sig_replace_btn(Fl_Widget*, void*)
-{
-  int index = mod_para_brw->value();
-
-  strcpy(add_mod_para,add_mod_type);
-  strcat(add_mod_para," ");
-  strcat(add_mod_para,add_val_type);
-  if (!strcmp(add_mod_type,"interface"))
-  {
-    strcat(add_mod_para,"/");
-    strcat(add_mod_para,agn_val_type);
-  }
-  strcat(add_mod_para," ");
-  strcat(add_mod_para,mod_val_input->value());
-  strcat(add_mod_para," ");
-  strcat(add_mod_para,sig_mod_para_input->value());
-  mod_para_brw->replace(index, add_mod_para);
-
-  sig_delete_btn->deactivate();
-  sig_replace_btn->deactivate();
-  return;
-}
-
-void cb_sig_del_btn(Fl_Widget*, void*)
-{
-  int index = mod_para_brw->value();
-  mod_para_brw->remove(index);
-  sig_delete_btn->deactivate();
-  sig_replace_btn->deactivate();
-  return;
-}
-
-//取消添加模型
-void cb_can_add_btn(Fl_Widget*, void*){
-  edit_mod_win->hide();
-  return;
-}
-
-void cb_edit_mod_btn(Fl_Widget*, void*)
-{
-  { edit_mod_win = new Fl_Double_Window(314, 320, "Model editor (gm3d)");
-    { mod_type_group = new Fl_Group(20, 25, 250, 53, "Model Type :");
-      mod_type_group->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-      { reg_bok_rbtn = new Fl_Radio_Round_Button(20, 25, 110, 28, "Regular Block");
-        reg_bok_rbtn->down_box(FL_ROUND_DOWN_BOX);
-        reg_bok_rbtn->callback((Fl_Callback*)cb_reg_bok_rbtn);
-        reg_bok_rbtn->tooltip("model parameter:\n<xmin>/<xmax>/<ymin>/<ymax>/<zmin>/<zmax>");
-      } // Fl_Radio_Round_Button* reg_bok_rbtn
-      { til_bok_rbtn = new Fl_Radio_Round_Button(160, 25, 100, 28, "Tilted Block");
-        til_bok_rbtn->down_box(FL_ROUND_DOWN_BOX);
-        til_bok_rbtn->callback((Fl_Callback*)cb_til_bok_rbtn);
-        til_bok_rbtn->tooltip("model parameter:\n<xmin_z>/<xmax_z>/<ymin_z>/<ymax_z>/<zmin>/<xmin_Z>/<xmax_Z>/<ymin_Z>/<ymax_Z>/<zmax>");
-      } // Fl_Radio_Round_Button* til_bok_rbtn
-      { sph_rbtn = new Fl_Radio_Round_Button(20, 50, 70, 28, "Sphere");
-        sph_rbtn->down_box(FL_ROUND_DOWN_BOX);
-        sph_rbtn->callback((Fl_Callback*)cb_sph_rbtn);
-        sph_rbtn->tooltip("model parameter:\n<x_c>/<y_c>/<z_c>/<x_radius>/<y_radius>/<z_radius>");
-      } // Fl_Radio_Round_Button* sph_rbtn
-      { int_face_rbtn = new Fl_Radio_Round_Button(160, 50, 80, 28, "Interface");
-        int_face_rbtn->down_box(FL_ROUND_DOWN_BOX);
-        int_face_rbtn->callback((Fl_Callback*)cb_int_face_rbtn);
-        int_face_rbtn->tooltip("model parameter:\n<grid-filename>");
-      } // Fl_Radio_Round_Button* int_face_rbtn
-      mod_type_group->end();
-    } // Fl_Group* mod_type_group
-    { val_type_group = new Fl_Group(20, 100, 250, 30, "Value Type :");
-      val_type_group->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-      { app_val_rbtn = new Fl_Radio_Round_Button(20, 100, 80, 28, "Append");
-        app_val_rbtn->down_box(FL_ROUND_DOWN_BOX);
-        app_val_rbtn->callback((Fl_Callback*)cb_app_val_rbtn);
-      } // Fl_Radio_Round_Button* app_val_rbtn
-      { rep_val_rbtn = new Fl_Radio_Round_Button(110, 100, 80, 28, "Replace");
-        rep_val_rbtn->down_box(FL_ROUND_DOWN_BOX);
-        rep_val_rbtn->callback((Fl_Callback*)cb_rep_val_rbtn);
-      } // Fl_Radio_Round_Button* rep_val_rbtn
-      { era_val_rbtn = new Fl_Radio_Round_Button(200, 100, 60, 28, "Erase");
-        era_val_rbtn->down_box(FL_ROUND_DOWN_BOX);
-        era_val_rbtn->callback((Fl_Callback*)cb_era_val_rbtn);
-      } // Fl_Radio_Round_Button* era_val_rbtn
-      val_type_group->end();
-    } // Fl_Group* val_type_group
-    { agn_part_group = new Fl_Group(20, 150, 160, 28, "Assign Part :");
-      agn_part_group->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-      { top_val_btn = new Fl_Radio_Round_Button(20, 150, 50, 28, "Top");
-        top_val_btn->down_box(FL_ROUND_DOWN_BOX);
-        top_val_btn->callback((Fl_Callback*)cb_top_val_rbtn);
-      } // Fl_Radio_Round_Button* top_val_btn
-      { bot_val_btn = new Fl_Radio_Round_Button(90, 150, 70, 28, "Bottom");
-        bot_val_btn->down_box(FL_ROUND_DOWN_BOX);
-        bot_val_btn->callback((Fl_Callback*)cb_bot_val_rbtn);
-      } // Fl_Radio_Round_Button* bot_val_btn
-      agn_part_group->deactivate();
-      agn_part_group->end();
-    } // Fl_Group* agn_part_group
-    { sig_mod_para_input = new Fl_Input(20, 200, 275, 28, "Model Parameter :");
-      sig_mod_para_input->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-    } // Fl_Input* sig_mod_para_input
-    { mod_val_input = new Fl_Input(180, 150, 115, 28, "Model Value :");
-      mod_val_input->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-    } // Fl_Input* mod_val_input
-    { sig_add_btn = new Fl_Button(19, 240, 80, 28, "Add");
-      sig_add_btn->callback((Fl_Callback*)cb_sig_add_btn);
-    } // Fl_Button* sig_add_btn
-    { sig_replace_btn = new Fl_Button(118, 240, 80, 28, "Replace");
-      sig_replace_btn->callback((Fl_Callback*)cb_sig_replace_btn);
-      sig_replace_btn->deactivate();
-    } // Fl_Button* sig_replace_btn
-    { sig_delete_btn = new Fl_Button(215, 240, 80, 28, "Remove");
-      sig_delete_btn->callback((Fl_Callback*)cb_sig_del_btn);
-      sig_delete_btn->deactivate();
-    } // Fl_Button* sig_delete_btn
-    { can_add_btn = new Fl_Return_Button(215, 280, 80, 28, "Cancel");
-      can_add_btn->callback((Fl_Callback*)cb_can_add_btn);
-    } // Fl_Return_Button* can_add_btn
-    edit_mod_win->end();
-    edit_mod_win->show();
-  } // Fl_Double_Window* edit_mod_win
 }

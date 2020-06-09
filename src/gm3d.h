@@ -9,7 +9,7 @@ public:
 	~GM3D(){}
 	int BuildRegularGrid(char*); //初始化反演模型空间
 	int AddModels(char*); //读取模型块体参数文件
-	void AddModels_GUI(); //添加模型块体参数
+	void AddModels_GUI(); //添加模型块体参数 GUI程序调用
 	int AddRegularBlock(modelist); //添加普通模型块体
 	int AddTiltedBlock(modelist); //添加倾斜模型块体
 	int AddSphereBlock(modelist); //添加球体椭球体块体

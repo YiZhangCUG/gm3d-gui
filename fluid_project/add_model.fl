@@ -4,9 +4,9 @@ header_name {.h}
 code_name {.cxx}
 Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
 } {
-  Fl_Window add_mod_win {
-    label {Add model (gm3d)} open
-    xywh {735 331 315 300} type Double visible
+  Fl_Window edit_mod_win {
+    label {Model editor (gm3d)} open selected
+    xywh {889 252 314 320} type Double visible
   } {
     Fl_Group mod_type_group {
       label {Model Type :} open
@@ -21,7 +21,7 @@ Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
         xywh {160 25 100 28} down_box ROUND_DOWN_BOX
       }
       Fl_Round_Button sph_rbtn {
-        label Sphere
+        label Ellipsoid
         xywh {20 50 70 28} down_box ROUND_DOWN_BOX
       }
       Fl_Round_Button int_face_rbtn {
@@ -47,7 +47,7 @@ Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
       }
     }
     Fl_Group agn_part_group {
-      label {Assgin Part :} open
+      label {Assign Part :} open
       xywh {20 150 160 28} align 5
     } {
       Fl_Round_Button top_val_btn {
@@ -56,24 +56,32 @@ Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
       }
       Fl_Round_Button bot_val_btn {
         label Bottom
-        xywh {110 150 70 28} down_box ROUND_DOWN_BOX deactivate
+        xywh {90 150 70 28} down_box ROUND_DOWN_BOX deactivate
       }
     }
     Fl_Input sig_mod_para_input {
       label {Model Parameter :}
       xywh {20 200 275 28} align 5
     }
-    Fl_Return_Button can_add_btn {
-      label Cancel
-      xywh {210 255 85 28}
+    Fl_Input mod_val_input {
+      label {Model Value :}
+      xywh {180 150 115 28} align 5
     }
     Fl_Button sig_add_btn {
       label Add
-      xywh {140 255 60 28}
+      xywh {19 240 80 28}
     }
-    Fl_Input mod_val_input {
-      label {Model Value :}
-      xywh {20 255 110 28} align 5
+    Fl_Button sig_replace_btn {
+      label Replace
+      xywh {118 240 80 28} deactivate
+    }
+    Fl_Button sig_delete_btn {
+      label Remove
+      xywh {215 240 80 28} deactivate
+    }
+    Fl_Return_Button can_add_btn {
+      label Cancel
+      xywh {215 280 80 28}
     }
   }
 }

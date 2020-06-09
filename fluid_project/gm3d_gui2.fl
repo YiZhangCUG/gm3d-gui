@@ -8,13 +8,10 @@ Function {cb_mesh_para_input(Fl_Input*, void*)} {open
 Function {cb_mesh_file_btn(Fl_Widget*, void*)} {open
 } {}
 
-Function {cb_add_mod_btn(Fl_Widget*, void*)} {open
+Function {cb_edit_mod_btn(Fl_Widget*, void*)} {open
 } {}
 
 Function {cb_mod_para_file_btn(Fl_Widget*, void*)} {open
-} {}
-
-Function {cb_del_mod_btn(Fl_Widget*, void*)} {open
 } {}
 
 Function {cb_mod_para_brw(Fl_Browser*, void*)} {open
@@ -66,14 +63,14 @@ Function {} {open
 } {
   Fl_Window main_window {
     label gm3d open
-    xywh {678 185 500 600} type Double visible
+    xywh {857 85 500 600} type Double visible
   } {
     Fl_Tabs main_tabs {open
       xywh {10 10 480 580}
     } {
       Fl_Group model_tab {
-        label {Build Model} open
-        xywh {10 40 480 550} hide
+        label {Build Model} open selected
+        xywh {10 40 480 550}
       } {
         Fl_Input mesh_para_input {
           label {Input Mesh Parameters :}
@@ -104,15 +101,10 @@ Function {} {open
           label {Mesh Parameters :}
           xywh {40 120 300 28} box NO_BOX align 5
         }
-        Fl_Button add_mod_btn {
-          label {Add Model}
-          callback cb_add_mod_btn
+        Fl_Button edit_mod_btn {
+          label {Model Editor}
+          callback cb_edit_mod_btn
           xywh {40 160 100 28}
-        }
-        Fl_Button del_mod_btn {
-          label {Delete Model}
-          callback cb_del_mod_btn
-          xywh {360 160 100 28} deactivate
         }
         Fl_Check_Button rm_emp_bok_check {
           label {Remove Empty Blocks}
@@ -134,15 +126,15 @@ Function {} {open
         }
       }
       Fl_Group forward_tab {
-        label {Forward Modeling} open
-        xywh {10 40 480 550}
+        label {Forward Modeling}
+        xywh {10 40 480 550} hide
       } {
         Fl_Group grav_group {
           label {Forward Gravitational Data :} open
           xywh {40 340 190 58} align 5
         } {
           Fl_Check_Button Vz_check {
-            label Vz selected
+            label Vz
             xywh {40 340 50 28} down_box DOWN_BOX
           }
           Fl_Check_Button Vzx_check {

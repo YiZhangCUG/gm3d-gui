@@ -12,8 +12,6 @@
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Browser.H>
 #include <FL/Fl_File_Chooser.H>
-#include <FL/Fl_Radio_Round_Button.H>
-#include <FL/Fl_Return_Button.H>
 
 #include <iostream>
 #include <string.h>
@@ -22,24 +20,22 @@
 
 extern void cb_mesh_para_input(Fl_Input*, void*);
 extern void cb_mesh_file_btn(Fl_Widget*, void*);
-extern void cb_mod_para_file_btn(Fl_Widget*, void*);
-extern void cb_build_mod_btn(Fl_Widget*, void*);
 extern void cb_edit_mod_btn(Fl_Widget*, void*);
-extern void cb_rm_emp_bok_check(Fl_Check_Button*, void*);
+extern void cb_mod_para_file_btn(Fl_Widget*, void*);
 extern void cb_mod_para_brw(Fl_Browser*, void*);
+extern void cb_rm_emp_bok_check(Fl_Check_Button*, void*);
 extern void cb_mod_file_out_btn(Fl_Widget*, void*);
-
-extern void cb_mod_file_btn(Fl_Widget*, void*);
-extern void cb_obs_file_btn(Fl_Widget*, void*);
+extern void cb_build_mod_btn(Fl_Widget*, void*);
 extern void cb_mod_file_input(Fl_Input*, void*);
+extern void cb_mod_file_btn(Fl_Widget*, void*);
 extern void cb_obs_file_input(Fl_Input*, void*);
-
-extern void cb_mag_data_check(Fl_Check_Button*, void*);
-extern void cb_cal_btn(Fl_Button*, void*);
-
-extern void cb_noise_check(Fl_Check_Button*, void*);
+extern void cb_obs_file_btn(Fl_Widget*, void*);
 extern void cb_res_file_input(Fl_Input*, void*);
 extern void cb_res_file_btn(Fl_Widget*, void*);
+extern void cb_nosie_check(Fl_Check_Button*, void*);
+extern void cb_mag_data_check(Fl_Check_Button*, void*);
+extern void cb_mag_para_input(Fl_Input*, void*);
+extern void cb_cal_btn(Fl_Button*, void*);
 
 extern Fl_Double_Window *main_window;
 extern Fl_Tabs *main_tabs;
@@ -84,39 +80,4 @@ extern Fl_Check_Button *noise_check;
 extern Fl_Input *res_file_input;
 extern Fl_Button *res_file_btn;
 extern Fl_Output *res_file_output;
-
-extern void cb_reg_bok_rbtn(Fl_Button*, void*);
-extern void cb_til_bok_rbtn(Fl_Button*, void*);
-extern void cb_sph_rbtn(Fl_Button*, void*);
-extern void cb_int_face_rbtn(Fl_Button*, void*);
-extern void cb_app_val_rbtn(Fl_Button*, void*);
-extern void cb_rep_val_rbtn(Fl_Button*, void*);
-extern void cb_era_val_rbtn(Fl_Button*, void*);
-extern void cb_top_val_rbtn(Fl_Button*, void*);
-extern void cb_bot_val_rbtn(Fl_Button*, void*);
-extern void cb_sig_add_btn(Fl_Widget*, void*);
-extern void cb_sig_replace_btn(Fl_Widget*, void*);
-extern void cb_sig_del_btn(Fl_Widget*, void*);
-extern void cb_can_add_btn(Fl_Widget*, void*);
-
-extern Fl_Double_Window *edit_mod_win;
-extern Fl_Group *mod_type_group;
-extern Fl_Radio_Round_Button *reg_bok_rbtn;
-extern Fl_Radio_Round_Button *til_bok_rbtn;
-extern Fl_Radio_Round_Button *sph_rbtn;
-extern Fl_Radio_Round_Button *int_face_rbtn;
-extern Fl_Group *val_type_group;
-extern Fl_Radio_Round_Button *app_val_rbtn;
-extern Fl_Radio_Round_Button *rep_val_rbtn;
-extern Fl_Radio_Round_Button *era_val_rbtn;
-extern Fl_Group *agn_part_group;
-extern Fl_Radio_Round_Button *top_val_btn;
-extern Fl_Radio_Round_Button *bot_val_btn;
-extern Fl_Input *sig_mod_para_input;
-extern Fl_Input *mod_val_input;
-extern Fl_Button *sig_add_btn;
-extern Fl_Button *sig_replace_btn;
-extern Fl_Button *sig_delete_btn;
-extern Fl_Return_Button *can_add_btn;
-
 #endif //_GM3D_GUI_H
