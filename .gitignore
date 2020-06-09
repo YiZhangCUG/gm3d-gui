@@ -34,3 +34,4 @@
 # Mac folder
 .DS_Store
 build_mac/
+build/
