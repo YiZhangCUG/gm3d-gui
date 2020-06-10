@@ -54,43 +54,60 @@ Function {} {open
 } {
   Fl_Window main_window {
     label gm3d open
-    xywh {645 105 500 580} type Double visible
+    xywh {616 107 500 580} type Double visible
   } {
     Fl_Tabs main_tabs {open
-      xywh {10 10 480 560}
+      xywh {10 10 525 560}
     } {
       Fl_Group model_tab {
-        label {Build 3D Mesh Model} selected
-        xywh {10 40 480 530}
+        label {Build 3D Mesh Model} open selected
+        xywh {10 40 525 530}
       } {
-        Fl_Input mesh_para_input {
-          label {Mesh Parameters:}
-          tooltip {<xmin>/<dx>/<xmax>/<ymin>/<dy>/<ymax>/<zmin>/<dz>/<zmax>} xywh {40 70 420 28} align 5
+        Fl_Group {} {
+          label {3D Mesh:}
+          xywh {40 70 340 75} align 5
+        } {
+          Fl_Button mesh_para_file_btn {
+            label {Import From}
+            xywh {160 75 100 28}
+          }
+          Fl_Button edit_mesh_btn {
+            label Editor
+            xywh {40 75 100 28}
+          }
+          Fl_Button mesh_para_save_btn {
+            label {Save As}
+            xywh {280 75 100 28} deactivate
+          }
+          Fl_Output mesh_para_output {
+            label {Mesh:}
+            xywh {80 115 300 28} box FLAT_BOX
+          }
         }
         Fl_Group {} {
-          label {Entities Parameters:}
-          xywh {40 130 369 40} align 5
+          label {Physical Entities:}
+          xywh {40 175 369 40} align 5
         } {
           Fl_Button edit_mod_btn {
             label Editor
             callback cb_edit_mod_btn
-            tooltip {Open the model editor to add or edit a model.} xywh {40 135 100 28}
+            tooltip {Open the model editor to add or edit a model.} xywh {40 180 100 28}
           }
           Fl_Button mod_para_file_btn {
             label {Import From}
             callback cb_mod_para_file_btn
-            tooltip {Import models from a text file.} xywh {160 135 100 28}
+            tooltip {Import models from a text file.} xywh {160 180 100 28}
           }
           Fl_Button mod_para_save_btn {
             label {Save As}
             callback cb_mod_para_save_btn
-            tooltip {Save models to a text file.} xywh {280 135 100 28} deactivate
+            tooltip {Save models to a text file.} xywh {280 180 100 28} deactivate
           }
         }
         Fl_Browser mod_para_brw {
           label {Added Physical Entities}
           callback cb_mod_para_brw
-          tooltip {Select a model to edit or remove it using the model editor.} xywh {40 195 420 250} align 5
+          tooltip {Select a model to edit or remove it using the model editor.} xywh {40 240 420 205} align 5
         }
         Fl_Input mesh_model_save_name {
           label {Mesh Model's Name:}
@@ -103,7 +120,7 @@ Function {} {open
           tooltip {Remove blocks with zero value from output mesh model files.} xywh {280 475 180 28} down_box DOWN_BOX
         }
         Fl_Button build_mod_btn {
-          label {Build Mesh Model}
+          label {Build 3D Model}
           callback cb_build_mod_btn
           tooltip {Build 3D meshed model uisng entity parameters listed in the browser.} xywh {40 520 300 28} deactivate
         }
@@ -115,107 +132,109 @@ Function {} {open
       }
       Fl_Group forward_tab {
         label {Forward Modeling}
-        xywh {10 40 480 530} box ROUNDED_FRAME hide
+        xywh {10 40 485 530} box ROUNDED_FRAME hide
       } {
-        Fl_Button mod_file_btn {
-          label {Mesh Model File}
-          callback cb_mod_file_btn
-          xywh {40 70 120 28}
+        Fl_Group {} {
+          label {Mesh Model:} open
+          xywh {40 70 120 35} align 5
+        } {
+          Fl_Button mod_file_btn {
+            label {Import From}
+            callback cb_mod_file_btn
+            xywh {40 75 110 28}
+          }
         }
         Fl_Output mesh_mod_disp {
-          label {Selected:}
-          xywh {240 70 220 28} box FLAT_BOX color 49
+          label {Mesh Model:}
+          xywh {120 110 340 28} box FLAT_BOX color 49
+        }
+        Fl_Output obs_file_disp {
+          label {Observations:}
+          xywh {125 135 335 28} box FLAT_BOX color 49
         }
         Fl_Group {} {
-          label Observations
-          xywh {40 130 420 80} align 5
+          label {Observations:}
+          xywh {210 70 250 35} align 5
         } {
           Fl_Button obs_file_btn {
-            label {Observation File}
+            label {Import From}
             callback cb_obs_file_btn
-            xywh {40 135 120 28}
+            xywh {340 75 120 28}
           }
-          Fl_Output obs_file_disp {
-            label {Selected:}
-            xywh {240 135 220 28} box FLAT_BOX color 49
-          }
-          Fl_Check_Button manual_input_check {
-            label {Input Manually}
-            callback cb_manual_input_check
-            xywh {40 175 120 30} down_box DOWN_BOX
-          }
-          Fl_Input obs_file_input {
-            callback cb_obs_file_input
-            xywh {180 175 280 28} align 5 deactivate
+          Fl_Button {} {
+            label Editor
+            xywh {210 75 100 28}
           }
         }
         Fl_Input mod_ele_input {
-          label {Mesh Model Data Name:}
+          label {Model Data Name:}
           callback cb_mod_ele_input
-          xywh {260 245 200 28} align 5
+          xywh {155 175 305 28}
         }
         Fl_Group grav_group {
           label {Forward Gravitational Data:}
-          xywh {40 245 190 60} align 5
+          xywh {40 235 190 75} align 5
         } {
           Fl_Check_Button Vz_check {
             label Vz
-            xywh {40 247 50 28} down_box DOWN_BOX
+            xywh {40 242 50 28} down_box DOWN_BOX
           }
           Fl_Check_Button Vzx_check {
             label Vzx
-            xywh {105 247 50 28} down_box DOWN_BOX
+            xywh {105 242 50 28} down_box DOWN_BOX
           }
           Fl_Check_Button Vzy_check {
             label Vzy
-            xywh {170 247 50 28} down_box DOWN_BOX
+            xywh {170 242 50 28} down_box DOWN_BOX
           }
           Fl_Check_Button Vzz_check {
             label Vzz
-            xywh {40 277 50 28} down_box DOWN_BOX
+            xywh {40 275 50 28} down_box DOWN_BOX
           }
         }
         Fl_Group mag_group {
-          xywh {40 365 420 90}
+          xywh {40 346 425 114}
         } {
           Fl_Check_Button DeltaT_check {
             label DeltaT
-            xywh {40 400 65 25} down_box DOWN_BOX deactivate
+            xywh {40 394 60 28} down_box DOWN_BOX deactivate
           }
           Fl_Check_Button DeltaTx_check {
             label DeltaTx
-            xywh {120 400 70 25} down_box DOWN_BOX deactivate
+            xywh {115 394 70 28} down_box DOWN_BOX deactivate
           }
           Fl_Check_Button DeltaTy_check {
             label DeltaTy
-            xywh {200 400 70 25} down_box DOWN_BOX deactivate
+            xywh {195 394 70 28} down_box DOWN_BOX deactivate
           }
           Fl_Check_Button DeltaTz_check {
             label DeltaTz
-            xywh {280 400 70 25} down_box DOWN_BOX deactivate
+            xywh {275 394 70 28} down_box DOWN_BOX deactivate
           }
           Fl_Check_Button Hax_check {
             label Hax
-            xywh {40 430 65 25} down_box DOWN_BOX deactivate
+            xywh {40 429 60 28} down_box DOWN_BOX deactivate
           }
           Fl_Check_Button Hay_check {
             label Hay
-            xywh {120 430 65 25} down_box DOWN_BOX deactivate
+            xywh {115 429 65 28} down_box DOWN_BOX deactivate
           }
           Fl_Check_Button Za_check {
             label Za
-            xywh {200 430 65 25} down_box DOWN_BOX deactivate
+            xywh {195 429 65 28} down_box DOWN_BOX deactivate
           }
-          Fl_Input mag_para_input {
-            label {Magnetization Parameters:  }
-            callback cb_mag_para_input
-            tooltip {<I0>/<D0>/<I>/<D>} xywh {220 365 240 28} deactivate
+          Fl_Button {} {
+            label Magnetization
+            xywh {40 351 110 28} deactivate
+          }
+          Fl_Output {} {
+            xywh {160 351 300 28} box FLAT_BOX deactivate
           }
         }
         Fl_Check_Button mag_data_check {
           label {Forward Magnetic Data}
           callback cb_mag_data_check
-          xywh {40 330 170 30} down_box DOWN_BOX
+          xywh {40 312 170 28} down_box DOWN_BOX
         }
         Fl_Button cal_btn {
           label Calculate
@@ -223,13 +242,14 @@ Function {} {open
           xywh {40 470 300 28} deactivate
         }
         Fl_Input noise_para_input {
+          label {Mean:}
           callback cb_noise_para_input
-          tooltip {<noise-mean>/<nosie-deviation>} xywh {260 315 200 28} align 5 deactivate
+          tooltip {<noise-mean>/<nosie-deviation>} xywh {300 242 160 28} deactivate
         }
         Fl_Check_Button noise_check {
-          label {Input Noise Parameters:}
+          label {Add Noises:}
           callback cb_noise_check
-          xywh {260 285 180 30} down_box DOWN_BOX
+          xywh {255 213 105 28} down_box DOWN_BOX
         }
         Fl_Button res_file_btn {
           label {Save As}
@@ -239,6 +259,11 @@ Function {} {open
         Fl_Progress cal_progress_bar {
           label {Calculating...}
           xywh {40 520 420 28} selection_color 139
+        }
+        Fl_Input noise_para_input {
+          label {Deviation:}
+          callback cb_noise_para_input
+          tooltip {<noise-mean>/<nosie-deviation>} xywh {325 282 135 28} deactivate
         }
       }
     }
