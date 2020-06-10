@@ -57,14 +57,14 @@ Function {} {open
     xywh {616 107 500 580} type Double visible
   } {
     Fl_Tabs main_tabs {open
-      xywh {10 10 525 560}
+      xywh {10 10 480 560}
     } {
       Fl_Group model_tab {
-        label {Build 3D Mesh Model} open selected
-        xywh {10 40 525 530}
+        label {Build 3D Mesh Model}
+        xywh {10 40 480 530} hide
       } {
         Fl_Group {} {
-          label {3D Mesh:}
+          label {3D Mesh:} open
           xywh {40 70 340 75} align 5
         } {
           Fl_Button mesh_para_file_btn {
@@ -131,8 +131,8 @@ Function {} {open
         }
       }
       Fl_Group forward_tab {
-        label {Forward Modeling}
-        xywh {10 40 485 530} box ROUNDED_FRAME hide
+        label {Forward Modeling} selected
+        xywh {10 40 480 530} box ROUNDED_FRAME
       } {
         Fl_Group {} {
           label {Mesh Model:} open

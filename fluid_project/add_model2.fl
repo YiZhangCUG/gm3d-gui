@@ -1,0 +1,185 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0305
+header_name {.h}
+code_name {.cxx}
+Function {cb_add_mod_btn(Fl_Button*, void*)} {open return_type void
+} {
+  Fl_Window edit_mod_win {
+    label {Physical Entity (gm3d)} open
+    xywh {551 245 405 493} type Double visible
+  } {
+    Fl_Group val_type_group {
+      label {Value Type:}
+      xywh {20 340 250 30} align 5
+    } {
+      Fl_Round_Button app_val_rbtn {
+        label Append
+        xywh {20 340 80 28} down_box ROUND_DOWN_BOX
+      }
+      Fl_Round_Button rep_val_rbtn {
+        label Replace
+        xywh {100 340 80 28} down_box ROUND_DOWN_BOX
+      }
+      Fl_Round_Button era_val_rbtn {
+        label Erase
+        xywh {210 340 60 28} down_box ROUND_DOWN_BOX
+      }
+    }
+    Fl_Group agn_part_group {
+      label {Solid Side:}
+      xywh {20 400 160 28} align 5
+    } {
+      Fl_Round_Button top_val_btn {
+        label Above
+        xywh {20 400 70 28} down_box ROUND_DOWN_BOX deactivate
+      }
+      Fl_Round_Button bot_val_btn {
+        label Below
+        xywh {100 400 70 28} down_box ROUND_DOWN_BOX deactivate
+      }
+    }
+    Fl_Input mod_val_input {
+      label {Physical Value:}
+      xywh {210 400 175 28} align 5
+    }
+    Fl_Button sig_add_btn {
+      label Add
+      xywh {20 447 80 28}
+    }
+    Fl_Button sig_replace_btn {
+      label Replace
+      xywh {115 447 80 28} deactivate
+    }
+    Fl_Button sig_delete_btn {
+      label Remove
+      xywh {210 447 80 28} deactivate
+    }
+    Fl_Return_Button can_add_btn {
+      label Quit
+      xywh {305 447 80 28}
+    }
+    Fl_Tabs {} {open
+      xywh {20 15 365 290} box UP_BOX align 5
+    } {
+      Fl_Group block_geo_tab {
+        label Block
+        xywh {20 15 365 260} hide
+      } {
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 35 110 29}
+        }
+        Fl_Input {} {
+          label {xmax:}
+          xywh {250 35 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 80 110 29}
+        }
+        Fl_Input {} {
+          label {xmax:}
+          xywh {250 80 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 125 110 29}
+        }
+        Fl_Input {} {
+          label {xmax:}
+          xywh {250 125 110 29}
+        }
+      }
+      Fl_Group tilt_block_geo_tab {
+        label {Tilted Block}
+        xywh {20 15 365 260} hide
+      } {
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 35 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {250 35 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 80 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {250 80 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 125 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {250 125 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 170 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {250 170 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 215 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {250 215 110 29}
+        }
+      }
+      Fl_Group sphere_geo_tab {
+        label Sphere
+        xywh {20 15 365 260} hide
+      } {
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 35 110 29}
+        }
+        Fl_Input {} {
+          label {xmax:}
+          xywh {250 35 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 80 110 29}
+        }
+        Fl_Input {} {
+          label {xmax:}
+          xywh {250 80 110 29}
+        }
+        Fl_Input {} {
+          label {xmin:}
+          xywh {75 125 110 29}
+        }
+        Fl_Input {} {
+          label {xmax:}
+          xywh {250 125 110 29}
+        }
+      }
+      Fl_Group interface_geo_tab {
+        label Interface
+        xywh {20 15 365 260}
+      } {
+        Fl_Button {} {
+          label {Import From}
+          xywh {40 35 100 28}
+        }
+        Fl_Browser {} {
+          xywh {40 75 325 185}
+        }
+        Fl_Output {} {
+          label {File:}
+          xywh {185 36 180 28} box FLAT_BOX
+        }
+      }
+    }
+  }
+}
