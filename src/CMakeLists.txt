@@ -2,14 +2,6 @@ aux_source_directory(. DIR_SRC)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
-find_package(OpenMP)
-if (OPENMP_FOUND)
-	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-	set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
-endif()
-# 生成windows和mac的应用程序文件
-
 include_directories(/usr/local/include)
 
 # NOTE: Don't include the path in MACOSX_BUNDLE_ICON_FILE -- this is
@@ -27,6 +19,15 @@ set_source_files_properties(${myApp_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Re
 #add_executable(gm3d_gui WIN32 MACOSX_BUNDLE ${DIR_SRC})
 add_executable(gm3d MACOSX_BUNDLE ${DIR_SRC} ${myApp_ICON})
 
-find_library(FLTK_LIBRARY libfltk.a /usr/local/Cellar/fltk/1.3.5/lib)
+# 添加openmp的编译命令 设置编译选项
+find_package(OpenMP REQUIRED)
+if (OpenMP_CXX_FOUND)
+	message(STATUS "OpenMP Found.")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+	set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${OpenMP_SHARED_LINKER_FLAGS}")
+	#target_link_libraries(gm3d PUBLIC OpenMP::OpenMP_CXX)
+endif()
 
-target_link_libraries(gm3d ${FLTK_LIBRARY})
+find_library(FLTK_LIBRARY libfltk.a /usr/local/Cellar/fltk/1.3.5/lib)
+target_link_libraries(gm3d ${FLTK_LIBRARY} OpenMP::OpenMP_CXX)
