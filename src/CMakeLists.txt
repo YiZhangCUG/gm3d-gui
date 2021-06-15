@@ -29,5 +29,11 @@ if (OpenMP_CXX_FOUND)
 	#target_link_libraries(gm3d PUBLIC OpenMP::OpenMP_CXX)
 endif()
 
-find_library(FLTK_LIBRARY libfltk.a /usr/local/Cellar/fltk/1.3.5/lib)
+#find_library(FLTK_LIBRARY libfltk.a /usr/local/Cellar/fltk/1.3.5/lib)
+
+# 添加头文件地址
+include_directories(/usr/include)
+# 添加动态库地址
+find_library(FLTK_LIBRARY fltk HINTS /usr/local/lib)
+
 target_link_libraries(gm3d ${FLTK_LIBRARY} OpenMP::OpenMP_CXX)
